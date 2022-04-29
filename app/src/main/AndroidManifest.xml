@@ -15,6 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BestConfectioneries">
         <activity
+            android:name=".drinks.view.EditDrinkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".drinks.view.AddDrinkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".drinks.view.DrinkListActivity"
+            android:exported="true" >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

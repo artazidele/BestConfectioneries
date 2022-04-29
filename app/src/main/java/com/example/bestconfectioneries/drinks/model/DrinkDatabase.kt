@@ -30,7 +30,7 @@ class DrinkDatabase {
             .set(drink)
     }
 
-    suspend fun updateAllergen(drink: Drink): Task<Void> {
+    suspend fun updateDrink(drink: Drink): Task<Void> {
         return db.collection("Drink").document(drink.id)
             .update(
                 mapOf(
