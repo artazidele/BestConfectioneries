@@ -10,7 +10,7 @@ class DrinkDatabase {
 
     suspend fun getDrinks(): Task<QuerySnapshot> {
         return db.collection("Drink")
-            .orderBy("title")
+            .orderBy("name")
             .get()
     }
 
@@ -34,8 +34,11 @@ class DrinkDatabase {
         return db.collection("Drink").document(drink.id)
             .update(
                 mapOf(
-                    "title" to drink.title,
+                    "name" to drink.name,
                     "tea" to drink.tea,
+                    "centi" to drink.centi,
+                    "eiro" to drink.eiro,
+                    "volume" to drink.volume,
                     "coffee" to drink.coffee,
                     "other" to drink.other,
                     "description" to drink.description,

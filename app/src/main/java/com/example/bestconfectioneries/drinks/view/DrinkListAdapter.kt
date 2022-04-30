@@ -32,7 +32,7 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>) :
     }
 
     override fun onBindViewHolder(viewHolder: DrinkListViewHolder, position: Int) {
-        viewHolder.textView.text = dataSet[position].title
+        viewHolder.textView.text = dataSet[position].name
 //        viewHolder.deleteButton.setOnClickListener {
 //            Log.d(ContentValues.TAG, "Delete button pressed")
 //            deleteAllergen(dataSet[position], viewHolder, position)

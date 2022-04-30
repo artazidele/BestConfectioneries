@@ -28,6 +28,9 @@ class DrinkListActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle("Drink List")
 
+//        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
@@ -58,6 +61,7 @@ class DrinkListActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.home -> Navigation().fromTo(this, MainActivity())
             R.id.add -> Navigation().fromTo(this, AddDrinkActivity())
+            else -> Navigation().fromTo(this, MainActivity())
 //            R.id.find_drink -> fromTo(this, MainActivity())
 //            R.id.profile -> fromTo(this, AddDrinkActivity())
 //            R.id.exit -> fromTo(this, AddDrinkActivity())

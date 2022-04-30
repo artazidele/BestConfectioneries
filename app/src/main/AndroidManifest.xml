@@ -19,17 +19,32 @@
             android:exported="true" />
         <activity
             android:name=".drinks.view.AddDrinkActivity"
-            android:exported="true" />
+            android:exported="true">
+        </activity>
+<!--        <activity-->
+<!--            android:name=".drinks.view.AddDrinkActivity"-->
+<!--            android:parentActivityName=".drinks.view.DrinkListActivity"-->
+<!--            android:exported="true">-->
+<!--            <meta-data-->
+<!--                android:name="android.support.PARENT_ACTIVITY"-->
+<!--                android:value="com.example.bestconfectioneries.drinks.view.DrinkListActivity" />-->
+<!--        </activity>-->
         <activity
+            android:launchMode="singleTop"
             android:name=".drinks.view.DrinkListActivity"
-            android:exported="true" >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            android:parentActivityName=".MainActivity"
+            android:exported="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.bestconfectioneries.MainActivity" />
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
         <activity
+            android:launchMode="singleTop"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
