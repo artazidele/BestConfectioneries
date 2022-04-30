@@ -28,7 +28,6 @@ class DrinkListActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle("Drink List")
 
-//        setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.lifecycleOwner = this
