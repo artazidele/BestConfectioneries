@@ -9,7 +9,7 @@ data class Drink(
     val other: Boolean = false,
     val eiro: Int = 0,
     val centi: Int = 0,
-    val volume: Int = 0,
+    val capacity: Int = 0,
     val description: String = "",
     val editedBy: ArrayList<String> = ArrayList(),
     val editedOn: ArrayList<String> = ArrayList()

@@ -38,7 +38,7 @@ class DrinkDatabase {
                     "tea" to drink.tea,
                     "centi" to drink.centi,
                     "eiro" to drink.eiro,
-                    "volume" to drink.volume,
+                    "capacity" to drink.capacity,
                     "coffee" to drink.coffee,
                     "other" to drink.other,
                     "description" to drink.description,
