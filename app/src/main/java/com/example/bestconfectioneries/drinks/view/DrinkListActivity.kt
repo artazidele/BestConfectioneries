@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityDrinkListBinding
+import com.example.bestconfectioneries.drinks.model.Drink
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.Navigation
 import com.example.bestconfectioneries.helpers.Network
@@ -40,9 +41,9 @@ class DrinkListActivity : AppCompatActivity() {
     }
 
     private fun refreshDrinkList() {
-        viewModel.getAllDrinks{
+        viewModel.getAllDrinks {
             if (it?.isNotEmpty() == true) {
-                binding.allDrinkRecyclerView.adapter = DrinkListAdapter(it!!)
+                binding.allDrinkRecyclerView.adapter = DrinkListAdapter(it!!, this)
                 binding.allDrinkRecyclerView.visibility = View.VISIBLE
                 Log.d(ContentValues.TAG, "NOT EMPTY")
             } else {

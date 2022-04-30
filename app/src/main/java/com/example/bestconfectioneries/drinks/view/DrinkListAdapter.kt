@@ -1,15 +1,20 @@
 package com.example.bestconfectioneries.drinks.view
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.drinks.model.Drink
 
-class DrinkListAdapter(private val dataSet: ArrayList<Drink>) :
+class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val context: Context) :
     RecyclerView.Adapter<DrinkListAdapter.DrinkListViewHolder>() {
 
     class DrinkListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -33,6 +38,9 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>) :
 
     override fun onBindViewHolder(viewHolder: DrinkListViewHolder, position: Int) {
         viewHolder.textView.text = dataSet[position].name
+        viewHolder.itemView.setOnClickListener {
+            showDrink(dataSet[position], viewHolder)
+        }
 //        viewHolder.deleteButton.setOnClickListener {
 //            Log.d(ContentValues.TAG, "Delete button pressed")
 //            deleteAllergen(dataSet[position], viewHolder, position)
@@ -42,16 +50,27 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>) :
 //        }
     }
     override fun getItemCount() = dataSet.size
-    private fun deleteDrink(allergen: Drink, viewHolder: RecyclerView.ViewHolder, position: Int) {
-//        val dialogView = LayoutInflater.from(viewHolder.itemView.context).inflate(R.layout.delete_window, null)
-//        val builder = AlertDialog.Builder(viewHolder.itemView.context)
-//            .setView(dialogView)
-//        val alertDialog = builder.show()
-//        dialogView.findViewById<TextView>(R.id.item_title_tv).text = allergen.title
-//        dialogView.findViewById<TextView>(R.id.question_tv).text = "Vai izdzēst šo alergēnu?"
-//        dialogView.findViewById<Button>(R.id.close_button).setOnClickListener {
-//            alertDialog.dismiss()
-//        }
+
+    private fun editDrink(drink: Drink) {
+        val intent = Intent(context!!, EditDrinkActivity()::class.java)
+        intent.putExtra("id", drink.id)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        ContextCompat.startActivity(context!!, intent, null)
+    }
+
+    private fun showDrink(drink: Drink, viewHolder: RecyclerView.ViewHolder) {
+        val dialogView = LayoutInflater.from(viewHolder.itemView.context).inflate(R.layout.more_about_drink, null)
+        val builder = AlertDialog.Builder(viewHolder.itemView.context)
+            .setView(dialogView)
+        val alertDialog = builder.show()
+        dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.edit_drink_button).setOnClickListener {
+            alertDialog.dismiss()
+            editDrink(drink)
+//            DrinkListActivity().editDrink(drink)
+        }
 //        dialogView.findViewById<Button>(R.id.not_delete_button).text = "Tomēr saglabāt alergēnu"
 //        dialogView.findViewById<Button>(R.id.not_delete_button).setOnClickListener {
 //            alertDialog.dismiss()
@@ -82,8 +101,5 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>) :
 //                }
 //            }
 //        }
-    }
-    private fun editAllergen(allergen: Drink, viewHolder: RecyclerView.ViewHolder, position: Int) {
-        // Uz EditDrinkActivity
     }
 }
