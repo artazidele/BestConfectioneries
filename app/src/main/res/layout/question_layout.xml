@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="drink"
+            type="com.example.bestconfectioneries.drinks.model.Drink" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/Window_Style">
+
+        <Button
+            android:id="@+id/close_window_button"
+            style="@style/Button_Style"
+            android:drawableTop="@drawable/ic_baseline_close_24"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:text="@string/tea_name"
+            style="@style/Title_Style"
+            android:id="@+id/drink_name_tv"
+            android:gravity="center"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/close_window_button" />
+
+        <TextView
+            android:text="Do You want to delete this drink?"
+            android:gravity="center"
+            android:id="@+id/question_tv"
+            style="@style/Text_Style"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/drink_name_tv" />
+
+        <Button
+            android:id="@+id/delete_drink_button"
+            style="@style/Button_Style"
+            android:text="Yes, delete"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/question_tv" />
+
+        <Button
+            android:id="@+id/not_delete_drink_button"
+            style="@style/Button_Style"
+            android:text="No, don't delete"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/delete_drink_button" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

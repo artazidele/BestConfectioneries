@@ -2,11 +2,14 @@ package com.example.bestconfectioneries.drinks.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.MenuItem
+import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityAddDrinkBinding
@@ -58,9 +61,30 @@ class AddDrinkActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            else -> Navigation().fromTo(this, DrinkListActivity())
+            else -> openBackWindow()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun openBackWindow() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.question_layout, null)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+        val alertDialog = builder.show()
+        dialogView.findViewById<TextView>(R.id.drink_name_tv).text = nameET.text.toString()
+        dialogView.findViewById<TextView>(R.id.question_tv).text = "If You go back, new drink won't be saved. \n Do You want to go back?"
+        dialogView.findViewById<Button>(R.id.not_delete_drink_button).text = "No, stay here"
+        dialogView.findViewById<Button>(R.id.delete_drink_button).text = "Yes, go back"
+        dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.not_delete_drink_button).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
+            alertDialog.dismiss()
+            Navigation().fromTo(this, DrinkListActivity())
+        }
     }
 
     private fun addDrink() {

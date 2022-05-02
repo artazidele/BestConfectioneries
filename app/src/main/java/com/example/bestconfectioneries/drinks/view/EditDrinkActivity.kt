@@ -4,12 +4,15 @@ import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityEditDrinkBinding
@@ -66,13 +69,53 @@ class EditDrinkActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.delete_drink -> deleteDrink()
-            else -> Navigation().fromTo(this, MainActivity())
+            R.id.delete_drink -> openDeleteWindow()
+            else -> openBackWindow()
 //            R.id.find_drink -> fromTo(this, MainActivity())
 //            R.id.profile -> fromTo(this, AddDrinkActivity())
 //            R.id.exit -> fromTo(this, AddDrinkActivity())
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun openBackWindow() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.question_layout, null)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+        val alertDialog = builder.show()
+        dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
+        dialogView.findViewById<TextView>(R.id.question_tv).text = "If You go back, changes won't be saved. \n Do You want to go back?"
+        dialogView.findViewById<Button>(R.id.not_delete_drink_button).text = "No, stay here"
+        dialogView.findViewById<Button>(R.id.delete_drink_button).text = "Yes, go back"
+        dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.not_delete_drink_button).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
+            alertDialog.dismiss()
+            Navigation().fromTo(this, DrinkListActivity())
+        }
+    }
+
+    private fun openDeleteWindow() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.question_layout, null)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+        val alertDialog = builder.show()
+        dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
+        dialogView.findViewById<TextView>(R.id.question_tv).text = "Do You want to delete this drink?"
+        dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.not_delete_drink_button).setOnClickListener {
+            alertDialog.dismiss()
+        }
+        dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
+            alertDialog.dismiss()
+            deleteDrink()
+        }
     }
 
     private fun deleteDrink() {
@@ -109,7 +152,11 @@ class EditDrinkActivity : AppCompatActivity() {
         descriptionET.setText(drink.description)
         capacityET.setText(drink.capacity.toString())
         eiroET.setText(drink.eiro.toString())
-        centiET.setText(drink.centi.toString())
+        if (drink.centi < 10) {
+            centiET.setText("0" + drink.centi.toString())
+        } else {
+            centiET.setText(drink.centi.toString())
+        }
         if (drink.coffee == true) {
             coffeeRB.isChecked = true
         } else if (drink.tea == true) {
