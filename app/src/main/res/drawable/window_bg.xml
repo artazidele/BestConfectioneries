@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:inset="@dimen/margin_between_rows">
+    <shape android:shape="rectangle">
+        <solid android:color="@color/white" />
+        <stroke
+            android:width="@dimen/small_width"
+            android:color="?attr/colorPrimaryVariant" />
+        <corners android:radius="@dimen/padding" />
+    </shape>
+</inset>

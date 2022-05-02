@@ -14,6 +14,13 @@ class DrinkDatabase {
             .get()
     }
 
+    suspend fun getOneConfectioneryDrinks(confectioneryId: String): Task<QuerySnapshot> {
+        return db.collection("Drink")
+            .whereEqualTo("confectioneryId", confectioneryId)
+            .orderBy("name")
+            .get()
+    }
+
     suspend fun deleteDrink(id: String): Task<Void> {
         return db.collection("Drink").document(id)
             .delete()

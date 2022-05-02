@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="btn_height">48dp</dimen>
+    <dimen name="btn_width">48dp</dimen>
+    <dimen name="button_text_size">14sp</dimen>
+    <dimen name="text_size">16sp</dimen>
+    <dimen name="title_size">20sp</dimen>
+    <dimen name="margin_between_elements">8dp</dimen>
+    <dimen name="margin_between_rows">4dp</dimen>
+    <dimen name="padding">8dp</dimen>
+    <dimen name="btn_padding">12dp</dimen>
+    <dimen name="small_width">1dp</dimen>
+</resources>

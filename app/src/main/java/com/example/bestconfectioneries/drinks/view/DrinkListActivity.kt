@@ -41,7 +41,7 @@ class DrinkListActivity : AppCompatActivity() {
     }
 
     private fun refreshDrinkList() {
-        viewModel.getAllDrinks {
+        viewModel.getThisConfectioneryDrinks("1") {
             if (it?.isNotEmpty() == true) {
                 binding.allDrinkRecyclerView.adapter = DrinkListAdapter(it!!, this)
                 binding.allDrinkRecyclerView.visibility = View.VISIBLE

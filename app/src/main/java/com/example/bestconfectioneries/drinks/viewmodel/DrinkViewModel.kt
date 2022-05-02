@@ -95,4 +95,24 @@ class DrinkViewModel : ViewModel() {
                 }
         }
     }
+
+    fun getThisConfectioneryDrinks(confectioneryId: String, onResult: (ArrayList<Drink>?) -> Unit) {
+        viewModelScope.launch {
+            var drinkList = ArrayList<Drink>()
+            _status.value = DrinkNetworkStatus.LOADING
+            DrinkDatabase().getOneConfectioneryDrinks(confectioneryId)
+                .addOnSuccessListener { documents ->
+                    for (document in documents) {
+                        val drink = document.toObject<Drink>()
+                        drinkList.add(drink)
+                    }
+                    _status.value = DrinkNetworkStatus.DONE
+                    onResult(drinkList)
+                }
+                .addOnFailureListener {
+                    _status.value = DrinkNetworkStatus.ERROR
+                    onResult(null)
+                }
+        }
+    }
 }
