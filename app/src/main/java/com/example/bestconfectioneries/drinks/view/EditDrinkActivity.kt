@@ -4,10 +4,14 @@ import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
 import androidx.activity.viewModels
+import com.example.bestconfectioneries.MainActivity
+import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityEditDrinkBinding
 import com.example.bestconfectioneries.drinks.model.Drink
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
@@ -55,15 +59,47 @@ class EditDrinkActivity : AppCompatActivity() {
         getDrink()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.edit_drink_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.delete_drink -> deleteDrink()
+            else -> Navigation().fromTo(this, MainActivity())
+//            R.id.find_drink -> fromTo(this, MainActivity())
+//            R.id.profile -> fromTo(this, AddDrinkActivity())
+//            R.id.exit -> fromTo(this, AddDrinkActivity())
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteDrink() {
+        if (drink.id != null) {
+            if (Network().checkConnection(this) == true) {
+                viewModel.deleteOneDrink(drinkId) { deleted ->
+                    if (deleted == true) {
+                        Navigation().fromTo(this, DrinkListActivity())
+                    } else {
+
+                    }
+                }
+            }
+        }
+    }
+
     private fun getDrink() {
-        viewModel.getOneDrink(drinkId!!) {
-            if (it?.id != null) {
-                drink = it
-                updateUI()
-                Log.d(ContentValues.TAG, "FOUND")
-            } else {
-                reloadActivity()
-                Log.d(ContentValues.TAG, "NOT FOUND")
+        if (Network().checkConnection(this) == true) {
+            viewModel.getOneDrink(drinkId!!) {
+                if (it?.id != null) {
+                    drink = it
+                    updateUI()
+                    Log.d(ContentValues.TAG, "FOUND")
+                } else {
+                    reloadActivity()
+                    Log.d(ContentValues.TAG, "NOT FOUND")
+                }
             }
         }
     }
