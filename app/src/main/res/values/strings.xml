@@ -4,4 +4,6 @@
     <string name="tea_name">Tea Name</string>
     <string name="tea">Tea</string>
     <string name="tea_name_tea_name_tea_name_tea_name">Tea Name Tea Name Tea Name Tea Name</string>
+    <string name="save_changes">Save changes</string>
+    <string name="stars">* * * * * * * * * * * * *</string>
 </resources>

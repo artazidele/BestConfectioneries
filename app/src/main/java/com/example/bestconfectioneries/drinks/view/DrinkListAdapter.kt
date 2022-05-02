@@ -19,11 +19,13 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
 
     class DrinkListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
+        val textViewD: TextView
 //        val deleteButton: Button
 //        val editButton: Button
 //
         init {
             textView = view.findViewById(R.id.drink_title)
+            textViewD = view.findViewById(R.id.drink_description)
 //            deleteButton = view.findViewById(R.id.delete_allergen_button)
 //            editButton = view.findViewById(R.id.edit_allergen_button)
         }
@@ -38,6 +40,7 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
 
     override fun onBindViewHolder(viewHolder: DrinkListViewHolder, position: Int) {
         viewHolder.textView.text = dataSet[position].name
+        viewHolder.textViewD.text = dataSet[position].description
         viewHolder.itemView.setOnClickListener {
             showDrink(dataSet[position], viewHolder)
         }

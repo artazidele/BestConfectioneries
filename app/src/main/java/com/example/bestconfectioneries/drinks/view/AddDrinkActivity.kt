@@ -80,6 +80,8 @@ class AddDrinkActivity : AppCompatActivity() {
         }
         if (centiET.text.toString() == "") {
             centiET.setText("0")
+        } else if (centiET.text.toString().length < 2) {
+            centiET.setText(centiET.text.toString() + "0")
         }
         if (capacityET.text.toString() == "") {
             capacityET.setText("0")
