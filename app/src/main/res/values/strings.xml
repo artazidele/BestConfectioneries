@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BestConfectioneries</string>
+    <string name="edit_drink">Edit drink</string>
+    <string name="tea_name">Tea Name</string>
+    <string name="tea">Tea</string>
+    <string name="tea_name_tea_name_tea_name_tea_name">Tea Name Tea Name Tea Name Tea Name</string>
 </resources>

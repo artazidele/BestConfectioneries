@@ -13,14 +13,21 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="0dp">
+        style="@style/Row_Style">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:text="@string/tea_name"
+            style="@style/Text_Style"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             android:id="@+id/drink_title"/>
+
+        <TextView
+            android:text="@string/tea_name_tea_name_tea_name_tea_name"
+            style="@style/Small_Text_Style"
+            app:layout_constraintTop_toBottomOf="@id/drink_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:id="@+id/drink_description"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

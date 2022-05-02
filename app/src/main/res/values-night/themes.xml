@@ -2,15 +2,15 @@
     <!-- Base application theme. -->
     <style name="Theme.BestConfectioneries" parent="Theme.MaterialComponents.DayNight">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_grey_200_light</item>
+        <item name="colorPrimary">@color/deep_orange_50</item>
         <item name="colorPrimaryVariant">@color/blue_grey_700_dark</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/blue_grey_200</item>
-        <item name="colorSecondaryVariant">@color/blue_grey_200_dark</item>
+        <item name="colorSecondary">@color/deep_orange_50</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorAccent">?attr/colorPrimaryVariant</item>
     </style>
 </resources>

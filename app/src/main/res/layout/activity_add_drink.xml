@@ -17,43 +17,39 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingHorizontal="8dp"
-            android:paddingBottom="24dp"
+            android:paddingBottom="@dimen/padding_bottom"
             tools:context=".drinks.view.AddDrinkActivity">
 
 
             <TextView
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:layout_width="match_parent"
+                style="@style/Small_Text_Style"
                 android:gravity="center"
                 android:id="@+id/upper_tv"
-                android:text="To add new drink,"
+                android:text="To add new drink, please, fill"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_height="wrap_content"
-                android:minHeight="48dp"
-                android:layout_width="match_parent"
+                style="@style/Small_Text_Style"
                 android:gravity="center"
                 android:id="@+id/upper_second_tv"
-                android:text="please, fill out the form below!"
+                android:text="out the form below!"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/upper_tv" />
 
             <TextView
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Small_Text_Style"
                 android:gravity="center"
                 android:id="@+id/on_info"
                 android:text="*   *   *   *   *   *   *   *   *   *   *   *   *"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/upper_second_tv" />
 
             <TextView
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Text_Style"
                 android:gravity="center_vertical"
                 android:id="@+id/drink_type_tv"
                 android:text="Drink type: "
@@ -70,26 +66,22 @@
 
                 <RadioButton
                     android:id="@+id/coffee_rb"
-                    android:layout_height="48dp"
-                    android:layout_width="wrap_content"
+                    style="@style/Input_Field_Style"
                     android:text="coffee" />
 
                 <RadioButton
                     android:id="@+id/tea_rb"
-                    android:layout_height="48dp"
-                    android:layout_width="wrap_content"
+                    style="@style/Input_Field_Style"
                     android:text="tea" />
 
                 <RadioButton
                     android:id="@+id/other_rb"
-                    android:layout_height="48dp"
-                    android:layout_width="wrap_content"
+                    style="@style/Input_Field_Style"
                     android:text="other" />
             </RadioGroup>
 
             <TextView
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Text_Style"
                 android:gravity="center_vertical"
                 android:id="@+id/drink_name_tv"
                 android:text="Drink name: "
@@ -97,16 +89,14 @@
                 app:layout_constraintTop_toBottomOf="@id/drink_type_rg" />
 
             <EditText
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Input_Field_Style"
                 android:id="@+id/drink_name_et"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/drink_name_tv" />
 
             <TextView
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Text_Style"
                 android:gravity="center_vertical"
                 android:id="@+id/drink_description_tv"
                 android:text="Drink description: "
@@ -114,16 +104,14 @@
                 app:layout_constraintTop_toBottomOf="@id/drink_name_et" />
 
             <EditText
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Input_Field_Style"
                 android:id="@+id/drink_description_et"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/drink_description_tv" />
 
             <TextView
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Text_Style"
                 android:gravity="center_vertical"
                 android:id="@+id/drink_capacity_tv"
                 android:text="Drink capacity (ml): "
@@ -131,8 +119,7 @@
                 app:layout_constraintTop_toBottomOf="@id/drink_description_et" />
 
             <EditText
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Input_Field_Style"
                 android:id="@+id/drink_capacity_et"
                 android:inputType="number"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -148,53 +135,50 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/Text_Style"
                     android:text="Price: "/>
 
                 <EditText
+                    android:layout_height="@dimen/btn_height"
                     android:layout_width="wrap_content"
                     android:minWidth="80dp"
                     android:inputType="number"
-                    android:layout_height="wrap_content"
                     android:id="@+id/eiro_et"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" . "/>
+                    style="@style/Text_Style"
+                    android:text="."/>
 
                 <EditText
+                    android:layout_height="@dimen/btn_height"
                     android:layout_width="wrap_content"
                     android:minWidth="80dp"
                     android:inputType="number"
-                    android:layout_height="wrap_content"
                     android:id="@+id/centi_et"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/Text_Style"
                     android:text=" €"/>
 
             </LinearLayout>
 
             <TextView
-                android:layout_height="48dp"
-                android:layout_width="match_parent"
+                style="@style/Small_Text_Style"
                 android:gravity="center"
                 android:id="@+id/under_info"
                 android:text="*   *   *   *   *   *   *   *   *   *   *   *   *"
                 app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/price_ll" />
 
             <Button
                 android:id="@+id/add_drink_button"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
+                style="@style/Button_Style"
                 android:text="Add new drink"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/under_info" />
+                app:layout_constraintTop_toBottomOf="@id/under_info"
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 

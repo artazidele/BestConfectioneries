@@ -10,4 +10,5 @@
     <dimen name="padding">8dp</dimen>
     <dimen name="btn_padding">12dp</dimen>
     <dimen name="small_width">1dp</dimen>
+    <dimen name="padding_bottom">32dp</dimen>
 </resources>

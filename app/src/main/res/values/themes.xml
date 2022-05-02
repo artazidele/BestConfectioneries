@@ -2,20 +2,22 @@
     <!-- Base application theme. -->
     <style name="Theme.BestConfectioneries" parent="Theme.MaterialComponents.DayNight.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/blue_grey_200_light</item>
-        <item name="colorPrimaryVariant">@color/blue_grey_700_dark</item>
+        <item name="colorPrimary">@color/grey_50</item>
+        <item name="colorPrimaryVariant">@color/pink_900_dark</item>
         <item name="colorOnPrimary">@color/black</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/blue_grey_200</item>
-        <item name="colorSecondaryVariant">@color/blue_grey_200_dark</item>
+        <item name="colorSecondary">@color/grey_50</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="colorAccent">?attr/colorPrimaryVariant</item>
     </style>
     <style name="Window_Style" parent="Theme.BestConfectioneries">
         <item name="android:background">@drawable/window_bg</item>
         <item name="android:padding">@dimen/padding</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
     <style name="Button_Style" parent="Theme.BestConfectioneries">
         <item name="android:padding">@dimen/btn_padding</item>
@@ -28,5 +30,48 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:minWidth">@dimen/btn_width</item>
         <item name="android:background">@drawable/btn_bg</item>
+    </style>
+    <style name="Row_Style" parent="Theme.BestConfectioneries">
+        <item name="android:background">@drawable/row_bg</item>
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:layout_margin">@dimen/margin_between_rows</item>
+    </style>
+    <style name="Text_Style" parent="Theme.BestConfectioneries">
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="Title_Style" parent="Theme.BestConfectioneries">
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:textSize">@dimen/title_size</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:capitalize">words</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="Small_Text_Style" parent="Theme.BestConfectioneries">
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">?attr/colorPrimaryVariant</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style>
+    <style name="Input_Field_Style" parent="Theme.BestConfectioneries">
+        <item name="android:padding">@dimen/padding</item>
+        <item name="android:textSize">@dimen/text_size</item>
+        <item name="fontFamily">sans-serif-light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/btn_height</item>
+        <item name="android:layout_width">match_parent</item>
     </style>
 </resources>
