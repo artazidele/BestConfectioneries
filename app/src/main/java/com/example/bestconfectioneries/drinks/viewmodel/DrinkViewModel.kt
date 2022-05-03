@@ -15,7 +15,8 @@ class DrinkViewModel : ViewModel() {
     private val _status = MutableLiveData<DrinkNetworkStatus>()
     val status: LiveData<DrinkNetworkStatus> = _status
 
-    fun addNewDrink(drink: Drink, onResult: (Boolean) -> Unit) {
+        fun addNewDrink(drink: Drink, onResult: (Boolean) -> Unit) {
+//    fun addNewDrink(drink: Drink) {
         viewModelScope.launch {
             _status.value = DrinkNetworkStatus.LOADING
             DrinkDatabase().addDrink(drink)

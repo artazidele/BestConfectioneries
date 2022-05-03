@@ -35,16 +35,14 @@ class DrinkListActivity : AppCompatActivity() {
         binding.viewModel = viewModel
 
         binding.allDrinkRecyclerView.layoutManager = LinearLayoutManager(this)
-        if (Network().checkConnection(this) == true) {
-            refreshDrinkList()
-        }
+        refreshDrinkList()
     }
 
     private fun refreshDrinkList() {
         viewModel.getThisConfectioneryDrinks("1") {
             if (it?.isNotEmpty() == true) {
                 binding.allDrinkRecyclerView.adapter = DrinkListAdapter(it!!, this)
-                binding.allDrinkRecyclerView.visibility = View.VISIBLE
+//                binding.allDrinkRecyclerView.visibility = View.VISIBLE
                 Log.d(ContentValues.TAG, "NOT EMPTY")
             } else {
                 Log.d(ContentValues.TAG, "EMPTY")
@@ -54,17 +52,19 @@ class DrinkListActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.drink_menu, menu)
+        menu?.findItem(R.id.add)?.setVisible(false)
+        val userConfectioneryId = "1" // get current user confectioneryId
+        val confectioneryId = "1" // get current confectioneryId
+        if (userConfectioneryId == confectioneryId) {
+            menu?.findItem(R.id.add)?.setVisible(true)
+        }
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home -> Navigation().fromTo(this, MainActivity())
             R.id.add -> Navigation().fromTo(this, AddDrinkActivity())
             else -> Navigation().fromTo(this, MainActivity())
-//            R.id.find_drink -> fromTo(this, MainActivity())
-//            R.id.profile -> fromTo(this, AddDrinkActivity())
-//            R.id.exit -> fromTo(this, AddDrinkActivity())
         }
         return super.onOptionsItemSelected(item)
     }

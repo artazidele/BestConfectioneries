@@ -6,4 +6,11 @@
     <string name="tea_name_tea_name_tea_name_tea_name">Tea Name Tea Name Tea Name Tea Name</string>
     <string name="save_changes">Save changes</string>
     <string name="stars">* * * * * * * * * * * * *</string>
+    <string name="okay">Okay</string>
+    <string name="drinks">Drinks</string>
+    <string name="add_drink">Add drink</string>
+    <string name="delete_drink">Delete drink</string>
+    <string name="loading">Loading...</string>
+    <string name="wrong">Something went \n wrong. \n \n Please, try again later!</string>
+    <string name="cancel">Cancel</string>
 </resources>

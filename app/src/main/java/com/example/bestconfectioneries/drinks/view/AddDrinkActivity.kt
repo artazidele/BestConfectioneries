@@ -16,6 +16,7 @@ import com.example.bestconfectioneries.databinding.ActivityAddDrinkBinding
 import com.example.bestconfectioneries.databinding.ActivityDrinkListBinding
 import com.example.bestconfectioneries.drinks.model.Drink
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
+import com.example.bestconfectioneries.helpers.ErrorHandling
 import com.example.bestconfectioneries.helpers.Navigation
 import com.example.bestconfectioneries.helpers.Network
 import java.time.LocalDateTime
@@ -53,9 +54,9 @@ class AddDrinkActivity : AppCompatActivity() {
         centiET = binding.centiEt
 
         binding.addDrinkButton.setOnClickListener {
-            if (Network().checkConnection(this) == true) {
-                addDrink()
-            }
+//            if (Network().checkConnection(this) == true) {
+            addDrink()
+//            }
         }
     }
 
@@ -88,49 +89,56 @@ class AddDrinkActivity : AppCompatActivity() {
     }
 
     private fun addDrink() {
-        val confectionerId = "ConfectionerId" // Get current user id or etc
-        val confectioneryId = "1" // Get current user's confectionery id or etc
-        val editedBy: ArrayList<String> = ArrayList()
-        val editedOn: ArrayList<String> = ArrayList()
-        val dateAndTimeNow = LocalDateTime.now()
-        val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-        val dateAndTimeToSave = dateAndTimeNow.format(dateFormat).toString()
-        editedBy.add(confectionerId)
-        editedOn.add(dateAndTimeToSave)
-        val uuid = UUID.randomUUID()
-        val id = uuid.toString()
-        if (eiroET.text.toString() == "") {
-            eiroET.setText("0")
-        }
-        if (centiET.text.toString() == "") {
-            centiET.setText("0")
-        } else if (centiET.text.toString().length < 2) {
-            centiET.setText(centiET.text.toString() + "0")
-        }
-        if (capacityET.text.toString() == "") {
-            capacityET.setText("0")
-        }
-        val totalPrice = eiroET.text.toString().toInt() * 100 + centiET.text.toString().toInt()
-        val centi = totalPrice % 100
-        val eiro = (totalPrice - centi) / 100
-        val newDrink = Drink(
-            id,
-            confectioneryId,
-            nameET.text.toString(),
-            coffeeRB.isChecked,
-            teaRB.isChecked,
-            otherRB.isChecked,
-            eiro,
-            centi,
-            capacityET.text.toString().toInt(),
-            descriptionET.text.toString(),
-            editedBy, editedOn
-        )
-        viewModel.addNewDrink(newDrink) { added ->
-            if (added == true) {
-                Navigation().fromTo(this, DrinkListActivity())
-            } else {
+        if (coffeeRB.isChecked == false && teaRB.isChecked == false && otherRB.isChecked == false) {
+            val message = "Please, choose drink type!"
+            ErrorHandling().showErrorWindow(this, message)
+        } else {
+            val confectionerId = "ConfectionerId" // Get current user id or etc
+            val confectioneryId = "1" // Get current user's confectionery id or etc
+            val editedBy: ArrayList<String> = ArrayList()
+            val editedOn: ArrayList<String> = ArrayList()
+            val dateAndTimeNow = LocalDateTime.now()
+            val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+            val dateAndTimeToSave = dateAndTimeNow.format(dateFormat).toString()
+            editedBy.add(confectionerId)
+            editedOn.add(dateAndTimeToSave)
+            val uuid = UUID.randomUUID()
+            val id = uuid.toString()
+            if (eiroET.text.toString() == "") {
+                eiroET.setText("0")
+            }
+            if (centiET.text.toString() == "") {
+                centiET.setText("0")
+            } else if (centiET.text.toString().length < 2) {
+                centiET.setText(centiET.text.toString() + "0")
+            }
+            if (capacityET.text.toString() == "") {
+                capacityET.setText("0")
+            }
+            val totalPrice = eiroET.text.toString().toInt() * 100 + centiET.text.toString().toInt()
+            val centi = totalPrice % 100
+            val eiro = (totalPrice - centi) / 100
+            val newDrink = Drink(
+                id,
+                confectioneryId,
+                nameET.text.toString(),
+                coffeeRB.isChecked,
+                teaRB.isChecked,
+                otherRB.isChecked,
+                eiro,
+                centi,
+                capacityET.text.toString().toInt(),
+                descriptionET.text.toString(),
+                editedBy, editedOn
+            )
 
+            viewModel.addNewDrink(newDrink) { added ->
+                if (added == true) {
+                    Navigation().fromTo(this, DrinkListActivity())
+                } else {
+                    val message = "@string/wrong"
+                    ErrorHandling().showErrorWindow(this, message)
+                }
             }
         }
 

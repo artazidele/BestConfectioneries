@@ -20,14 +20,9 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
     class DrinkListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
         val textViewD: TextView
-//        val deleteButton: Button
-//        val editButton: Button
-//
         init {
             textView = view.findViewById(R.id.drink_title)
             textViewD = view.findViewById(R.id.drink_description)
-//            deleteButton = view.findViewById(R.id.delete_allergen_button)
-//            editButton = view.findViewById(R.id.edit_allergen_button)
         }
     }
 
@@ -44,13 +39,6 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
         viewHolder.itemView.setOnClickListener {
             showDrink(dataSet[position], viewHolder)
         }
-//        viewHolder.deleteButton.setOnClickListener {
-//            Log.d(ContentValues.TAG, "Delete button pressed")
-//            deleteAllergen(dataSet[position], viewHolder, position)
-//        }
-//        viewHolder.editButton.setOnClickListener {
-//            editAllergen(dataSet[position], viewHolder, position)
-//        }
     }
     override fun getItemCount() = dataSet.size
 
@@ -69,40 +57,14 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
         dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
             alertDialog.dismiss()
         }
+        val userConfectioneryId = "1" // get current user confectioneryId
+        val confectioneryId = "1" // get current confectioneryId
+        if (userConfectioneryId != confectioneryId) {
+            dialogView.findViewById<Button>(R.id.edit_drink_button).visibility = View.GONE
+        }
         dialogView.findViewById<Button>(R.id.edit_drink_button).setOnClickListener {
             alertDialog.dismiss()
             editDrink(drink)
-//            DrinkListActivity().editDrink(drink)
         }
-//        dialogView.findViewById<Button>(R.id.not_delete_button).text = "Tomēr saglabāt alergēnu"
-//        dialogView.findViewById<Button>(R.id.not_delete_button).setOnClickListener {
-//            alertDialog.dismiss()
-//        }
-//        dialogView.findViewById<Button>(R.id.delete_button).text = "Dzēst alergēnu"
-//        dialogView.findViewById<Button>(R.id.delete_button).setOnClickListener {
-//            if (NetworkDataViewModel().checkConnection(viewHolder.itemView.context) == true) {
-//                AllergenDataViewModel().getAllergenItems(dataSet[position].id) { itemList ->
-//                    if (itemList?.isEmpty() == true) {
-//                        Log.d(ContentValues.TAG, "CAN DELETE")
-//                        AllergenDataViewModel().deleteOneAllergen(dataSet[position].id) { isDeleted ->
-//                            if (isDeleted == true) {
-//                                Log.d(ContentValues.TAG, "TRUE")
-//                                Log.d(ContentValues.TAG, "Position: " + position.toString())
-//                                dataSet.removeAt(position)
-//                                notifyDataSetChanged()
-//                                alertDialog.dismiss()
-//                                Log.d(ContentValues.TAG, "Count: " + itemCount.toString())
-//                            } else {
-//                                Log.d(ContentValues.TAG, "FALSE")
-//                            }
-//                        }
-//                    } else if (itemList?.isNotEmpty() == true) {
-//                        Log.d(ContentValues.TAG, "CANNOT DELETE")
-//                    } else {
-//                        Log.d(ContentValues.TAG, "NULL")
-//                    }
-//                }
-//            }
-//        }
     }
 }

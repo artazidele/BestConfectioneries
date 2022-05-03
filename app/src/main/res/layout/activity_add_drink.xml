@@ -25,19 +25,10 @@
                 style="@style/Small_Text_Style"
                 android:gravity="center"
                 android:id="@+id/upper_tv"
-                android:text="To add new drink, please, fill"
+                android:text="To add new drink, please, fill \n out the form below!"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                style="@style/Small_Text_Style"
-                android:gravity="center"
-                android:id="@+id/upper_second_tv"
-                android:text="out the form below!"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/upper_tv" />
 
             <TextView
                 style="@style/Small_Text_Style"
@@ -46,7 +37,7 @@
                 android:text="@string/stars"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/upper_second_tv" />
+                app:layout_constraintTop_toBottomOf="@id/upper_tv" />
 
             <TextView
                 style="@style/Text_Style"

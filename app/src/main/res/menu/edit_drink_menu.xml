@@ -5,6 +5,6 @@
     tools:context=".MainActivity">
     <item android:id="@+id/delete_drink"
         android:icon="@drawable/ic_baseline_delete_24"
-        android:title="Delete drink"
+        android:title="@string/delete_drink"
         app:showAsAction="always"/>
 </menu>

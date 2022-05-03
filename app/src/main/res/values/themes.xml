@@ -40,6 +40,7 @@
         <item name="android:padding">@dimen/padding</item>
         <item name="android:textSize">@dimen/text_size</item>
         <item name="fontFamily">sans-serif-light</item>
+        <item name="android:lineSpacingExtra">@dimen/padding</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_height">wrap_content</item>
@@ -51,6 +52,7 @@
         <item name="fontFamily">sans-serif-light</item>
         <item name="android:textStyle">bold</item>
         <item name="android:capitalize">words</item>
+        <item name="android:lineSpacingExtra">@dimen/padding</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -60,6 +62,7 @@
         <item name="android:textSize">@dimen/button_text_size</item>
         <item name="fontFamily">sans-serif-light</item>
         <item name="android:textStyle">italic</item>
+        <item name="android:lineSpacingExtra">@dimen/padding</item>
         <item name="android:textColor">?attr/colorPrimaryVariant</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
@@ -70,6 +73,7 @@
         <item name="fontFamily">sans-serif-light</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:lineSpacingExtra">@dimen/padding_layout</item>
         <item name="android:minHeight">@dimen/btn_height</item>
         <item name="android:layout_width">match_parent</item>
     </style>
