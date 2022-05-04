@@ -1,8 +1,11 @@
 package com.example.bestconfectioneries.drinks.view
 
+import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
@@ -15,6 +18,7 @@ import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityAddDrinkBinding
 import com.example.bestconfectioneries.databinding.ActivityDrinkListBinding
 import com.example.bestconfectioneries.drinks.model.Drink
+import com.example.bestconfectioneries.drinks.viewmodel.DrinkNetworkStatus
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.ErrorHandling
 import com.example.bestconfectioneries.helpers.Navigation
@@ -27,6 +31,9 @@ import kotlin.collections.ArrayList
 class AddDrinkActivity : AppCompatActivity() {
     private val viewModel: DrinkViewModel by viewModels()
     private lateinit var binding: ActivityAddDrinkBinding
+    private lateinit var newDrink: Drink
+    private lateinit var addDrinkBtn: Button
+
 
     private lateinit var nameET: EditText
     private lateinit var descriptionET: EditText
@@ -53,7 +60,8 @@ class AddDrinkActivity : AppCompatActivity() {
         eiroET = binding.eiroEt
         centiET = binding.centiEt
 
-        binding.addDrinkButton.setOnClickListener {
+        addDrinkBtn = binding.addDrinkButton
+        addDrinkBtn.setOnClickListener {
 //            if (Network().checkConnection(this) == true) {
             addDrink()
 //            }
@@ -118,7 +126,7 @@ class AddDrinkActivity : AppCompatActivity() {
             val totalPrice = eiroET.text.toString().toInt() * 100 + centiET.text.toString().toInt()
             val centi = totalPrice % 100
             val eiro = (totalPrice - centi) / 100
-            val newDrink = Drink(
+            newDrink = Drink(
                 id,
                 confectioneryId,
                 nameET.text.toString(),
@@ -131,9 +139,50 @@ class AddDrinkActivity : AppCompatActivity() {
                 descriptionET.text.toString(),
                 editedBy, editedOn
             )
+            openSaveWindow()
 
-            viewModel.addNewDrink(newDrink) { added ->
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            addDrinkBtn.isEnabled = false
+
+//            viewModel.addNewDrink(drink/*nameET, coffeeRB, teaRB, otherRB, capacityET, descriptionET, eiroET, centiET*/) { added ->
+//                Log.d(ContentValues.TAG, "VIEWMODEL")
+//                if (added == true) {
+//                    Navigation().fromTo(this, DrinkListActivity())
+//                } else {
+//                    val message = "@string/wrong"
+//                    ErrorHandling().showErrorWindow(this, message)
+//                }
+//            }
+        }
+
+    }
+
+    private fun openSaveWindow() {
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.before_add_drink_layout, null)
+        val builder = AlertDialog.Builder(this)
+            .setView(dialogView)
+        val alertDialog = builder.show()
+        dialogView.findViewById<TextView>(R.id.drink_name_et).text = newDrink.name
+        dialogView.findViewById<TextView>(R.id.drink_description_et).text = newDrink.description
+        dialogView.findViewById<TextView>(R.id.drink_capacity_et).text = newDrink.capacity.toString()
+        dialogView.findViewById<TextView>(R.id.eiro_et).text = newDrink.eiro.toString()
+        if (newDrink.centi < 10) {
+            dialogView.findViewById<TextView>(R.id.centi_et).text = "0" + newDrink.centi.toString()
+        } else {
+            dialogView.findViewById<TextView>(R.id.centi_et).text = newDrink.centi.toString()
+        }
+        dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
+            alertDialog.dismiss()
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            addDrinkBtn.isEnabled = true
+        }
+        dialogView.findViewById<Button>(R.id.add_drink_button).setOnClickListener {
+            dialogView.findViewById<Button>(R.id.close_window_button).isEnabled = false
+            dialogView.findViewById<Button>(R.id.add_drink_button).isEnabled = false
+            dialogView.findViewById<Button>(R.id.add_drink_button).text = "Loading..."
+            viewModel.addNewDrink(newDrink/*nameET, coffeeRB, teaRB, otherRB, capacityET, descriptionET, eiroET, centiET*/) { added ->
                 if (added == true) {
+                    alertDialog.dismiss()
                     Navigation().fromTo(this, DrinkListActivity())
                 } else {
                     val message = "@string/wrong"
@@ -141,6 +190,5 @@ class AddDrinkActivity : AppCompatActivity() {
                 }
             }
         }
-
     }
 }
