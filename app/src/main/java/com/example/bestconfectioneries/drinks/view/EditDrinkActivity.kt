@@ -19,6 +19,7 @@ import com.example.bestconfectioneries.databinding.ActivityEditDrinkBinding
 import com.example.bestconfectioneries.drinks.model.Drink
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkNetworkStatus
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
+import com.example.bestconfectioneries.helpers.ErrorHandling
 import com.example.bestconfectioneries.helpers.Navigation
 import com.example.bestconfectioneries.helpers.Network
 import java.time.LocalDateTime
@@ -66,6 +67,8 @@ class EditDrinkActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.edit_drink_menu, menu)
+        menuDeleteItem = menu!!.findItem(R.id.delete_drink)
+        menuDeleteItem.isEnabled = false
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -78,23 +81,27 @@ class EditDrinkActivity : AppCompatActivity() {
     }
 
     private fun openBackWindow() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.question_layout, null)
-        val builder = AlertDialog.Builder(this)
-            .setView(dialogView)
-        val alertDialog = builder.show()
-        dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
-        dialogView.findViewById<TextView>(R.id.question_tv).text =
-            "If You go back, changes won't be saved. \n Do You want to go back?"
-        dialogView.findViewById<Button>(R.id.not_delete_drink_button).text = "No, stay here"
-        dialogView.findViewById<Button>(R.id.delete_drink_button).text = "Yes, go back"
-        dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
-            alertDialog.dismiss()
-        }
-        dialogView.findViewById<Button>(R.id.not_delete_drink_button).setOnClickListener {
-            alertDialog.dismiss()
-        }
-        dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
-            alertDialog.dismiss()
+        if (menuDeleteItem.isEnabled == true) {
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.question_layout, null)
+            val builder = AlertDialog.Builder(this)
+                .setView(dialogView)
+            val alertDialog = builder.show()
+            dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
+            dialogView.findViewById<TextView>(R.id.question_tv).text =
+                "If You go back, changes won't be saved. \n Do You want to go back?"
+            dialogView.findViewById<Button>(R.id.not_delete_drink_button).text = "No, stay here"
+            dialogView.findViewById<Button>(R.id.delete_drink_button).text = "Yes, go back"
+            dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
+                alertDialog.dismiss()
+            }
+            dialogView.findViewById<Button>(R.id.not_delete_drink_button).setOnClickListener {
+                alertDialog.dismiss()
+            }
+            dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
+                alertDialog.dismiss()
+                Navigation().fromTo(this, DrinkListActivity())
+            }
+        } else {
             Navigation().fromTo(this, DrinkListActivity())
         }
     }
@@ -120,33 +127,34 @@ class EditDrinkActivity : AppCompatActivity() {
     }
 
     private fun deleteDrink() {
-        if (drink.id != null) {
-            viewModel.deleteOneDrink(drinkId) { deleted ->
-                if (deleted == true) {
-                    Navigation().fromTo(this, DrinkListActivity())
-                } else {
-
-                }
+        menuDeleteItem.isEnabled = false
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        viewModel.deleteOneDrink("8") { deleted ->
+//            viewModel.deleteOneDrink(drinkId) { deleted ->
+            if (deleted == true) {
+//                Navigation().fromTo(this, DrinkListActivity())
+//            } else {
+                menuDeleteItem.isEnabled = true
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                val message = "Something went wrong. \n Please, try again later!"
+                ErrorHandling().showErrorWindow(this, message)
             }
         }
     }
 
     private fun getDrink() {
+//        viewModel.getOneDrink("5") {
         viewModel.getOneDrink(drinkId!!) {
-//        viewModel.getOneDrink(drinkId!!) {
             if (it?.id != null) {
                 drink = it
                 updateUI()
                 Log.d(ContentValues.TAG, "FOUND")
-            } else {
-//                viewModel.errorStatus()
-                reloadActivity()
-                Log.d(ContentValues.TAG, "NOT FOUND")
             }
         }
     }
 
     private fun updateUI() {
+        menuDeleteItem.isEnabled = true
         nameET.setText(drink.name)
         descriptionET.setText(drink.description)
         capacityET.setText(drink.capacity.toString())
@@ -164,9 +172,7 @@ class EditDrinkActivity : AppCompatActivity() {
             otherRB.isChecked = true
         }
         editDrinkBtn.setOnClickListener {
-            if (Network().checkConnection(this) == true) {
-                editDrink()
-            }
+            editDrink()
         }
     }
 
@@ -195,7 +201,7 @@ class EditDrinkActivity : AppCompatActivity() {
         val centi = totalPrice % 100
         val eiro = (totalPrice - centi) / 100
         val newDrink = Drink(
-            drinkId!!,
+            "6", //drinkId!!, // "5"
             confectioneryId,
             nameET.text.toString(),
             coffeeRB.isChecked,
@@ -207,16 +213,17 @@ class EditDrinkActivity : AppCompatActivity() {
             descriptionET.text.toString(),
             editedBy, editedOn
         )
+        menuDeleteItem.isEnabled = false
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
         viewModel.updateOneDrink(newDrink) { added ->
             if (added == true) {
                 Navigation().fromTo(this, DrinkListActivity())
             } else {
-
+                menuDeleteItem.isEnabled = true
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                val message = "Something went wrong. \n Please, try again later!"
+                ErrorHandling().showErrorWindow(this, message)
             }
         }
-    }
-
-    private fun reloadActivity() {
-        // dialogview with button refresh
     }
 }

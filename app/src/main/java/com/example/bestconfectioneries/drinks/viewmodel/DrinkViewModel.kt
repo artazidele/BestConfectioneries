@@ -13,27 +13,17 @@ import kotlinx.coroutines.launch
 import kotlin.collections.ArrayList
 
 enum class DrinkNetworkStatus { LOADING, ERROR, DONE }
-//enum class OneDrinkNetworkStatus { LOADING, ERROR, DONE }
 
 class DrinkViewModel : ViewModel() {
     private val _status = MutableLiveData<DrinkNetworkStatus>()
     val status: LiveData<DrinkNetworkStatus> = _status
-//    private val _onestatus = MutableLiveData<DrinkNetworkStatus>()
-//    val onestatus: LiveData<DrinkNetworkStatus> = _onestatus
-
-//    fun errorStatus() {
-//        _status.value = DrinkNetworkStatus.ERROR
-//    }
     fun addNewDrink(drink: Drink,onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
-//            _status.value = DrinkNetworkStatus.LOADING
             DrinkDatabase().addDrink(drink)
                 .addOnSuccessListener { documents ->
-//                    _status.value = DrinkNetworkStatus.DONE
                     onResult(true)
                 }
                 .addOnFailureListener {
-//                    _status.value = DrinkNetworkStatus.ERROR
                     onResult(false)
                 }
         }
@@ -45,9 +35,14 @@ class DrinkViewModel : ViewModel() {
             DrinkDatabase().getDrink(id)
                 .addOnSuccessListener { document ->
                     val drink = document.toObject<Drink>()
-                    _status.value = DrinkNetworkStatus.DONE
-                    Log.d(ContentValues.TAG, "DONE VIEWMODEL")
-                    onResult(drink)
+                    if (drink?.id != null) {
+                        _status.value = DrinkNetworkStatus.DONE
+                        onResult(drink)
+                    } else {
+                        _status.value = DrinkNetworkStatus.ERROR
+                        onResult(null)
+                    }
+
                 }
                 .addOnFailureListener {
                     _status.value = DrinkNetworkStatus.ERROR
@@ -58,14 +53,14 @@ class DrinkViewModel : ViewModel() {
 
     fun deleteOneDrink(id: String, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
-//            _status.value = DrinkNetworkStatus.LOADING
+            _status.value = DrinkNetworkStatus.LOADING
             DrinkDatabase().deleteDrink(id)
                 .addOnSuccessListener {
-//                    _status.value = DrinkNetworkStatus.DONE
+                    _status.value = DrinkNetworkStatus.DONE
                     onResult(true)
                 }
                 .addOnFailureListener {
-//                    _status.value = DrinkNetworkStatus.ERROR
+                    _status.value = DrinkNetworkStatus.DONE
                     onResult(false)
                 }
         }
@@ -73,14 +68,13 @@ class DrinkViewModel : ViewModel() {
 
     fun updateOneDrink(drink: Drink, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
-//            _status.value = DrinkNetworkStatus.LOADING
+            _status.value = DrinkNetworkStatus.LOADING
             DrinkDatabase().updateDrink(drink)
                 .addOnSuccessListener {
-//                    _status.value = DrinkNetworkStatus.DONE
                     onResult(true)
                 }
                 .addOnFailureListener {
-//                    _status.value = DrinkNetworkStatus.ERROR
+                    _status.value = DrinkNetworkStatus.DONE
                     onResult(false)
                 }
         }
