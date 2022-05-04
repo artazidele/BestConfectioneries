@@ -59,6 +59,7 @@
                 <Button
                     android:layout_marginTop="@dimen/btn_height"
                     style="@style/Button_Style"
+                    android:id="@+id/try_btn"
                     android:text="Try again"/>
             </LinearLayout>
 

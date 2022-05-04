@@ -28,21 +28,20 @@ class DrinkListActivity : AppCompatActivity() {
         binding = ActivityDrinkListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("Drink List")
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
-
         binding.allDrinkRecyclerView.layoutManager = LinearLayoutManager(this)
         refreshDrinkList()
+        binding.tryBtn.setOnClickListener {
+            refreshDrinkList()
+        }
     }
 
     private fun refreshDrinkList() {
         viewModel.getThisConfectioneryDrinks("1") {
             if (it?.isNotEmpty() == true) {
                 binding.allDrinkRecyclerView.adapter = DrinkListAdapter(it!!, this)
-//                binding.allDrinkRecyclerView.visibility = View.VISIBLE
                 Log.d(ContentValues.TAG, "NOT EMPTY")
             } else {
                 Log.d(ContentValues.TAG, "EMPTY")

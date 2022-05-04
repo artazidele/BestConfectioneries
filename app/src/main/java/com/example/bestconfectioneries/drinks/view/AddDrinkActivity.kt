@@ -1,11 +1,8 @@
 package com.example.bestconfectioneries.drinks.view
 
-import android.content.ContentValues
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
@@ -13,16 +10,12 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityAddDrinkBinding
-import com.example.bestconfectioneries.databinding.ActivityDrinkListBinding
 import com.example.bestconfectioneries.drinks.model.Drink
-import com.example.bestconfectioneries.drinks.viewmodel.DrinkNetworkStatus
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.ErrorHandling
 import com.example.bestconfectioneries.helpers.Navigation
-import com.example.bestconfectioneries.helpers.Network
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -33,8 +26,6 @@ class AddDrinkActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAddDrinkBinding
     private lateinit var newDrink: Drink
     private lateinit var addDrinkBtn: Button
-
-
     private lateinit var nameET: EditText
     private lateinit var descriptionET: EditText
     private lateinit var coffeeRB: RadioButton
@@ -48,9 +39,7 @@ class AddDrinkActivity : AppCompatActivity() {
         binding = ActivityAddDrinkBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("New Drink")
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         nameET = binding.drinkNameEt
         descriptionET = binding.drinkDescriptionEt
         coffeeRB = binding.coffeeRb
@@ -59,12 +48,9 @@ class AddDrinkActivity : AppCompatActivity() {
         capacityET = binding.drinkCapacityEt
         eiroET = binding.eiroEt
         centiET = binding.centiEt
-
         addDrinkBtn = binding.addDrinkButton
         addDrinkBtn.setOnClickListener {
-//            if (Network().checkConnection(this) == true) {
             addDrink()
-//            }
         }
     }
 
@@ -140,19 +126,8 @@ class AddDrinkActivity : AppCompatActivity() {
                 editedBy, editedOn
             )
             openSaveWindow()
-
             supportActionBar?.setDisplayHomeAsUpEnabled(false)
             addDrinkBtn.isEnabled = false
-
-//            viewModel.addNewDrink(drink/*nameET, coffeeRB, teaRB, otherRB, capacityET, descriptionET, eiroET, centiET*/) { added ->
-//                Log.d(ContentValues.TAG, "VIEWMODEL")
-//                if (added == true) {
-//                    Navigation().fromTo(this, DrinkListActivity())
-//                } else {
-//                    val message = "@string/wrong"
-//                    ErrorHandling().showErrorWindow(this, message)
-//                }
-//            }
         }
 
     }

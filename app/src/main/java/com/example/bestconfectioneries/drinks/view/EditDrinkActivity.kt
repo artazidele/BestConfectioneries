@@ -17,6 +17,7 @@ import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityEditDrinkBinding
 import com.example.bestconfectioneries.drinks.model.Drink
+import com.example.bestconfectioneries.drinks.viewmodel.DrinkNetworkStatus
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.Navigation
 import com.example.bestconfectioneries.helpers.Network
@@ -26,7 +27,8 @@ import java.time.format.DateTimeFormatter
 class EditDrinkActivity : AppCompatActivity() {
     private val viewModel: DrinkViewModel by viewModels()
     private lateinit var binding: ActivityEditDrinkBinding
-
+    private lateinit var editedDrink: Drink
+    private lateinit var menuDeleteItem: MenuItem
     private lateinit var nameET: EditText
     private lateinit var descriptionET: EditText
     private lateinit var coffeeRB: RadioButton
@@ -36,7 +38,6 @@ class EditDrinkActivity : AppCompatActivity() {
     private lateinit var eiroET: EditText
     private lateinit var centiET: EditText
     private lateinit var editDrinkBtn: Button
-
     private lateinit var drinkId: String
     private lateinit var drink: Drink
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,10 +45,7 @@ class EditDrinkActivity : AppCompatActivity() {
         binding = ActivityEditDrinkBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("Edit Drink")
-
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         drinkId = intent.getStringExtra("id").toString()
         nameET = binding.drinkNameEt
         descriptionET = binding.drinkDescriptionEt
@@ -58,8 +56,12 @@ class EditDrinkActivity : AppCompatActivity() {
         eiroET = binding.eiroEt
         centiET = binding.centiEt
         editDrinkBtn = binding.addDrinkButton
-
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         getDrink()
+        binding.tryBtn.setOnClickListener {
+            getDrink()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -71,9 +73,6 @@ class EditDrinkActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.delete_drink -> openDeleteWindow()
             else -> openBackWindow()
-//            R.id.find_drink -> fromTo(this, MainActivity())
-//            R.id.profile -> fromTo(this, AddDrinkActivity())
-//            R.id.exit -> fromTo(this, AddDrinkActivity())
         }
         return super.onOptionsItemSelected(item)
     }
@@ -84,7 +83,8 @@ class EditDrinkActivity : AppCompatActivity() {
             .setView(dialogView)
         val alertDialog = builder.show()
         dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
-        dialogView.findViewById<TextView>(R.id.question_tv).text = "If You go back, changes won't be saved. \n Do You want to go back?"
+        dialogView.findViewById<TextView>(R.id.question_tv).text =
+            "If You go back, changes won't be saved. \n Do You want to go back?"
         dialogView.findViewById<Button>(R.id.not_delete_drink_button).text = "No, stay here"
         dialogView.findViewById<Button>(R.id.delete_drink_button).text = "Yes, go back"
         dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
@@ -105,7 +105,8 @@ class EditDrinkActivity : AppCompatActivity() {
             .setView(dialogView)
         val alertDialog = builder.show()
         dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
-        dialogView.findViewById<TextView>(R.id.question_tv).text = "Do You want to delete this drink?"
+        dialogView.findViewById<TextView>(R.id.question_tv).text =
+            "Do You want to delete this drink?"
         dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
             alertDialog.dismiss()
         }
@@ -120,29 +121,27 @@ class EditDrinkActivity : AppCompatActivity() {
 
     private fun deleteDrink() {
         if (drink.id != null) {
-            if (Network().checkConnection(this) == true) {
-                viewModel.deleteOneDrink(drinkId) { deleted ->
-                    if (deleted == true) {
-                        Navigation().fromTo(this, DrinkListActivity())
-                    } else {
+            viewModel.deleteOneDrink(drinkId) { deleted ->
+                if (deleted == true) {
+                    Navigation().fromTo(this, DrinkListActivity())
+                } else {
 
-                    }
                 }
             }
         }
     }
 
     private fun getDrink() {
-        if (Network().checkConnection(this) == true) {
-            viewModel.getOneDrink(drinkId!!) {
-                if (it?.id != null) {
-                    drink = it
-                    updateUI()
-                    Log.d(ContentValues.TAG, "FOUND")
-                } else {
-                    reloadActivity()
-                    Log.d(ContentValues.TAG, "NOT FOUND")
-                }
+        viewModel.getOneDrink(drinkId!!) {
+//        viewModel.getOneDrink(drinkId!!) {
+            if (it?.id != null) {
+                drink = it
+                updateUI()
+                Log.d(ContentValues.TAG, "FOUND")
+            } else {
+//                viewModel.errorStatus()
+                reloadActivity()
+                Log.d(ContentValues.TAG, "NOT FOUND")
             }
         }
     }
