@@ -29,7 +29,6 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): DrinkListViewHolder {
         val view = LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.drink_row, viewGroup, false)
-
         return DrinkListViewHolder(view)
     }
 
@@ -54,6 +53,17 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
         val builder = AlertDialog.Builder(viewHolder.itemView.context)
             .setView(dialogView)
         val alertDialog = builder.show()
+        if (drink.tea == true) {
+            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Tea"
+        } else if (drink.coffee == true) {
+            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Coffee"
+        } else {
+            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).visibility = View.INVISIBLE
+        }
+        dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
+        dialogView.findViewById<TextView>(R.id.drink_description_tv).text = drink.description
+        dialogView.findViewById<TextView>(R.id.drink_capacity_tv).text = "Capacity: " + drink.capacity.toString() + "ml"
+        dialogView.findViewById<TextView>(R.id.drink_price_tv).text = "Price: " + drink.eiro.toString() + "." + drink.centi.toString() + " €"
         dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
             alertDialog.dismiss()
         }

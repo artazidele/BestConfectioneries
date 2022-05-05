@@ -13,22 +13,18 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityEditDrinkBinding
 import com.example.bestconfectioneries.drinks.model.Drink
-import com.example.bestconfectioneries.drinks.viewmodel.DrinkNetworkStatus
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.ErrorHandling
 import com.example.bestconfectioneries.helpers.Navigation
-import com.example.bestconfectioneries.helpers.Network
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class EditDrinkActivity : AppCompatActivity() {
     private val viewModel: DrinkViewModel by viewModels()
     private lateinit var binding: ActivityEditDrinkBinding
-    private lateinit var editedDrink: Drink
     private lateinit var menuDeleteItem: MenuItem
     private lateinit var nameET: EditText
     private lateinit var descriptionET: EditText
@@ -129,11 +125,10 @@ class EditDrinkActivity : AppCompatActivity() {
     private fun deleteDrink() {
         menuDeleteItem.isEnabled = false
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        viewModel.deleteOneDrink("8") { deleted ->
-//            viewModel.deleteOneDrink(drinkId) { deleted ->
+        viewModel.deleteOneDrink(drinkId) { deleted ->
             if (deleted == true) {
-//                Navigation().fromTo(this, DrinkListActivity())
-//            } else {
+                Navigation().fromTo(this, DrinkListActivity())
+            } else {
                 menuDeleteItem.isEnabled = true
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 val message = "Something went wrong. \n Please, try again later!"
@@ -143,8 +138,7 @@ class EditDrinkActivity : AppCompatActivity() {
     }
 
     private fun getDrink() {
-//        viewModel.getOneDrink("5") {
-        viewModel.getOneDrink(drinkId!!) {
+        viewModel.getOneDrink(drinkId!!) { // viewModel.getOneDrink("5") {
             if (it?.id != null) {
                 drink = it
                 updateUI()
@@ -201,7 +195,7 @@ class EditDrinkActivity : AppCompatActivity() {
         val centi = totalPrice % 100
         val eiro = (totalPrice - centi) / 100
         val newDrink = Drink(
-            "6", //drinkId!!, // "5"
+            drinkId!!, // "5"
             confectioneryId,
             nameET.text.toString(),
             coffeeRB.isChecked,

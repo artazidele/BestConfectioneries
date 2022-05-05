@@ -1,24 +1,18 @@
 package com.example.bestconfectioneries.drinks.view
 
 import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.ActivityDrinkListBinding
-import com.example.bestconfectioneries.drinks.model.Drink
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.Navigation
-import com.example.bestconfectioneries.helpers.Network
 
 class DrinkListActivity : AppCompatActivity() {
     private val viewModel: DrinkViewModel by viewModels()
