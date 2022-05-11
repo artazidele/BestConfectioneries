@@ -5,13 +5,9 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.databinding.DrinkRowBinding
 import com.example.bestconfectioneries.databinding.MoreAboutDrinkBinding
 import com.example.bestconfectioneries.drinks.model.Drink
@@ -19,14 +15,6 @@ import com.example.bestconfectioneries.drinks.model.Drink
 class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val context: Context) :
     RecyclerView.Adapter<DrinkListAdapter.DrinkListViewHolder>() {
 
-    //    class DrinkListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-//        val textView: TextView
-//        val textViewD: TextView
-//        init {
-//            textView = view.findViewById(R.id.drink_title)
-//            textViewD = view.findViewById(R.id.drink_description)
-//        }
-//    }
     class DrinkListViewHolder(private var binding: DrinkRowBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(drink: Drink) {
             binding.drink = drink
@@ -34,20 +22,7 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
         }
     }
 
-//    companion object DiffCallback : DiffUtil.ItemCallback<CatPhoto>() {
-//        override fun areItemsTheSame(oldItem: CatPhoto, newItem: CatPhoto): Boolean {
-//            return oldItem.id == newItem.id
-//        }
-//
-//        override fun areContentsTheSame(oldItem: CatPhoto, newItem: CatPhoto): Boolean {
-//            return oldItem.url == newItem.url
-//        }
-//    }
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): DrinkListViewHolder {
-//        val view = LayoutInflater.from(viewGroup.context)
-//            .inflate(R.layout.drink_row, viewGroup, false)
-//        return DrinkListViewHolder(view)
         return DrinkListViewHolder(
             DrinkRowBinding.inflate(LayoutInflater.from(viewGroup.context), viewGroup, false)
         )
@@ -60,14 +35,6 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
             showDrink(dataSet[position], viewHolder)
         }
     }
-
-//    override fun onBindViewHolder(viewHolder: DrinkListViewHolder, position: Int) {
-//        viewHolder.textView.text = dataSet[position].name
-//        viewHolder.textViewD.text = dataSet[position].description
-//        viewHolder.itemView.setOnClickListener {
-//            showDrink(dataSet[position], viewHolder)
-//        }
-//    }
 
     override fun getItemCount() = dataSet.size
 
@@ -84,29 +51,6 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
             .setView(drinkWindow.root)
         val alertDialog = builder.show()
         drinkWindow.drink = drink
-//        val dialogView = LayoutInflater.from(viewHolder.itemView.context)
-//            .inflate(R.layout.more_about_drink, null)
-//        val builder = AlertDialog.Builder(viewHolder.itemView.context)
-//            .setView(dialogView)
-//        val alertDialog = builder.show()
-//        if (drink.tea == true) {
-//            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Tea"
-//        } else if (drink.coffee == true) {
-//            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Coffee"
-//        } else {
-//            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).visibility = View.INVISIBLE
-//        }
-//        dialogView.findViewById<TextView>(R.id.drink_name_tv).text = drink.name
-//        dialogView.findViewById<TextView>(R.id.drink_description_tv).text = drink.description
-//        dialogView.findViewById<TextView>(R.id.drink_capacity_tv).text =
-//            "Capacity: " + drink.capacity.toString() + "ml"
-//        if (drink.centi < 10) {
-//            dialogView.findViewById<TextView>(R.id.drink_price_tv).text =
-//                "Price: " + drink.eiro.toString() + ".0" + drink.centi.toString() + " €"
-//        } else {
-//            dialogView.findViewById<TextView>(R.id.drink_price_tv).text =
-//                "Price: " + drink.eiro.toString() + "." + drink.centi.toString() + " €"
-//        }
         drinkWindow.closeWindowButton.setOnClickListener {
             alertDialog.dismiss()
         }

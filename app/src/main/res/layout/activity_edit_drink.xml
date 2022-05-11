@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel" />
+
+<!--        <variable-->
+<!--            name="drink"-->
+<!--            type="com.example.bestconfectioneries.drinks.model.Drink" />-->
     </data>
 
     <ScrollView
@@ -16,13 +20,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             tools:context=".drinks.view.EditDrinkActivity">
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent"-->
-<!--                app:oneDrinkStatus="@{viewModel.status}">-->
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -32,40 +31,144 @@
 
 
                     <TextView
-                        android:id="@+id/upper_tv"
-                        style="@style/Small_Text_Style"
-                        android:gravity="center"
-                        android:text="To add new drink, please, fill"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/upper_second_tv"
-                        style="@style/Small_Text_Style"
-                        android:gravity="center"
-                        android:text="out the form below!"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/upper_tv" />
-
-                    <TextView
-                        android:id="@+id/on_info"
-                        style="@style/Small_Text_Style"
-                        android:gravity="center"
-                        android:text="@string/stars"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/upper_second_tv" />
-
-                    <TextView
                         android:id="@+id/drink_type_tv"
                         style="@style/Text_Style"
                         android:gravity="center_vertical"
-                        android:text="Drink type: "
+                        android:text="@string/drink_type"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/on_info" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
+<!--                    <RadioGroup-->
+<!--                        app:editType="@{drink}"-->
+<!--                        android:id="@+id/drink_type_rg"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="vertical"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_type_tv">-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/coffee_rb"-->
+<!--                            style="@style/Input_Field_Style"-->
+<!--                            android:text="@string/coffee" />-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/tea_rb"-->
+<!--                            style="@style/Input_Field_Style"-->
+<!--                            android:text="@string/tea" />-->
+
+<!--                        <RadioButton-->
+<!--                            android:id="@+id/other_rb"-->
+<!--                            style="@style/Input_Field_Style"-->
+<!--                            android:text="@string/other" />-->
+<!--                    </RadioGroup>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/drink_name_tv"-->
+<!--                        style="@style/Text_Style"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:text="@string/drink_name"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_type_rg" />-->
+
+<!--                    <EditText-->
+<!--                        app:editName="@{drink.name}"-->
+<!--                        android:id="@+id/drink_name_et"-->
+<!--                        style="@style/Input_Field_Style"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintRight_toRightOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_name_tv" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/drink_description_tv"-->
+<!--                        style="@style/Text_Style"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:text="@string/drink_description"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_name_et" />-->
+
+<!--                    <EditText-->
+<!--                        app:editDescription="@{drink.description}"-->
+<!--                        android:id="@+id/drink_description_et"-->
+<!--                        style="@style/Input_Field_Style"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintRight_toRightOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_description_tv" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/drink_capacity_tv"-->
+<!--                        style="@style/Text_Style"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:text="@string/drink_capacity_ml"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_description_et" />-->
+
+<!--                    <EditText-->
+<!--                        app:editCapacity="@{drink.capacity}"-->
+<!--                        android:id="@+id/drink_capacity_et"-->
+<!--                        style="@style/Input_Field_Style"-->
+<!--                        android:inputType="number"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintRight_toRightOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_capacity_tv" />-->
+
+<!--                    <LinearLayout-->
+<!--                        android:id="@+id/price_ll"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="48dp"-->
+<!--                        android:orientation="horizontal"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/drink_capacity_et">-->
+
+<!--                        <TextView-->
+<!--                            style="@style/Text_Style"-->
+<!--                            android:text="@string/price" />-->
+
+<!--                        <EditText-->
+<!--                            app:editEuro="@{drink.eiro}"-->
+<!--                            android:id="@+id/eiro_et"-->
+<!--                            style="@style/Input_Field_Style"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="@dimen/btn_height"-->
+<!--                            android:inputType="number"-->
+<!--                            android:minWidth="80dp" />-->
+
+<!--                        <TextView-->
+<!--                            style="@style/Text_Style"-->
+<!--                            android:text="@string/dot" />-->
+
+<!--                        <EditText-->
+<!--                            app:editCenti="@{drink.centi}"-->
+<!--                            android:id="@+id/centi_et"-->
+<!--                            style="@style/Input_Field_Style"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="@dimen/btn_height"-->
+<!--                            android:inputType="number"-->
+<!--                            android:minWidth="80dp" />-->
+
+<!--                        <TextView-->
+<!--                            style="@style/Text_Style"-->
+<!--                            android:text="@string/space_and_euro_sign" />-->
+
+<!--                    </LinearLayout>-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/under_info"-->
+<!--                        style="@style/Small_Text_Style"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="@string/stars"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintRight_toRightOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/price_ll" />-->
+
+<!--                    <Button-->
+<!--                        android:id="@+id/add_drink_button"-->
+<!--                        style="@style/Button_Style"-->
+<!--                        android:text="@string/save_changes"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                        app:layout_constraintRight_toRightOf="parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/under_info" />-->
                     <RadioGroup
                         android:id="@+id/drink_type_rg"
                         android:layout_width="match_parent"
@@ -77,24 +180,24 @@
                         <RadioButton
                             android:id="@+id/coffee_rb"
                             style="@style/Input_Field_Style"
-                            android:text="coffee" />
+                            android:text="@string/coffee" />
 
                         <RadioButton
                             android:id="@+id/tea_rb"
                             style="@style/Input_Field_Style"
-                            android:text="tea" />
+                            android:text="@string/tea" />
 
                         <RadioButton
                             android:id="@+id/other_rb"
                             style="@style/Input_Field_Style"
-                            android:text="other" />
+                            android:text="@string/other" />
                     </RadioGroup>
 
                     <TextView
                         android:id="@+id/drink_name_tv"
                         style="@style/Text_Style"
                         android:gravity="center_vertical"
-                        android:text="Drink name: "
+                        android:text="@string/drink_name"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/drink_type_rg" />
 
@@ -109,7 +212,7 @@
                         android:id="@+id/drink_description_tv"
                         style="@style/Text_Style"
                         android:gravity="center_vertical"
-                        android:text="Drink description: "
+                        android:text="@string/drink_description"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/drink_name_et" />
 
@@ -124,7 +227,7 @@
                         android:id="@+id/drink_capacity_tv"
                         style="@style/Text_Style"
                         android:gravity="center_vertical"
-                        android:text="Drink capacity (ml): "
+                        android:text="@string/drink_capacity_ml"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/drink_description_et" />
 
@@ -146,7 +249,7 @@
 
                         <TextView
                             style="@style/Text_Style"
-                            android:text="Price: " />
+                            android:text="@string/price" />
 
                         <EditText
                             android:id="@+id/eiro_et"
@@ -158,7 +261,7 @@
 
                         <TextView
                             style="@style/Text_Style"
-                            android:text="." />
+                            android:text="@string/dot" />
 
                         <EditText
                             android:id="@+id/centi_et"
@@ -170,7 +273,7 @@
 
                         <TextView
                             style="@style/Text_Style"
-                            android:text=" €" />
+                            android:text="@string/space_and_euro_sign" />
 
                     </LinearLayout>
 
@@ -193,7 +296,6 @@
                         app:layout_constraintTop_toBottomOf="@id/under_info" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-<!--            </LinearLayout>-->
 
             <TextView
                 style="@style/Small_Text_Style"
@@ -228,7 +330,7 @@
                     android:id="@+id/try_btn"
                     style="@style/Button_Style"
                     android:layout_marginTop="@dimen/btn_height"
-                    android:text="Try again" />
+                    android:text="@string/try_again" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

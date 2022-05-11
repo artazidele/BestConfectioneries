@@ -16,6 +16,7 @@ class DrinkDatabase {
 
     suspend fun getOneConfectioneryDrinks(confectioneryId: String): Task<QuerySnapshot> {
         return db.collection("Drink")
+//        return db.collection("Drinks")
             .whereEqualTo("confectioneryId", confectioneryId)
 //            .whereEqualTo("confectioneryId", "c")
             .orderBy("name")

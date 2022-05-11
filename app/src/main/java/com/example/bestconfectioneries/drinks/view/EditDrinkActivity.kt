@@ -61,6 +61,17 @@ class EditDrinkActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun getDrink() {
+        viewModel.getOneDrink(drinkId!!) { // viewModel.getOneDrink("5") {
+            if (it?.id != null) {
+                drink = it
+                Log.d(ContentValues.TAG, "FOUND")
+                updateUI()
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.edit_drink_menu, menu)
         menuDeleteItem = menu!!.findItem(R.id.delete_drink)
@@ -133,16 +144,6 @@ class EditDrinkActivity : AppCompatActivity() {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 val message = "Something went wrong. \n Please, try again later!"
                 ErrorHandling().showErrorWindow(this, message)
-            }
-        }
-    }
-
-    private fun getDrink() {
-        viewModel.getOneDrink(drinkId!!) { // viewModel.getOneDrink("5") {
-            if (it?.id != null) {
-                drink = it
-                updateUI()
-                Log.d(ContentValues.TAG, "FOUND")
             }
         }
     }

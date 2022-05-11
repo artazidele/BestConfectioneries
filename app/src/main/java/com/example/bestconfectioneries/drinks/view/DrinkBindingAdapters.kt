@@ -3,15 +3,18 @@ package com.example.bestconfectioneries.drinks.view
 import android.content.ContentValues
 import android.util.Log
 import android.view.View
+import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.RadioGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.bestconfectioneries.R
 import com.example.bestconfectioneries.drinks.model.Drink
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkNetworkStatus
 
-// Binding Adapters for DrinkListActivity, AddDrinkActivity, EditDrinkActivity
+// Binding Adapters for DrinkListActivity, AddDrinkActivity, EditDrinkActivity status
 @BindingAdapter("drinkLoadingStatus")
 fun bindDrinkLoadingStatus(statusTextView: TextView, status: DrinkNetworkStatus?) {
     when (status) {
@@ -133,7 +136,3 @@ fun bindMorePrice(textView: TextView, drink: Drink) {
         textView.text = "Price: " + drink.eiro.toString() + "." + drink.centi.toString() + "€"
     }
 }
-
-
-
-

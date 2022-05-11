@@ -60,7 +60,7 @@
                     android:layout_marginTop="@dimen/btn_height"
                     style="@style/Button_Style"
                     android:id="@+id/try_btn"
-                    android:text="Try again"/>
+                    android:text="@string/try_again"/>
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
