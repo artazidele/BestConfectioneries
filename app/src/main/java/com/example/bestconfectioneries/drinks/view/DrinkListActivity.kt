@@ -48,6 +48,7 @@ class DrinkListActivity : AppCompatActivity() {
         menu?.findItem(R.id.add)?.setVisible(false)
         val userConfectioneryId = "1" // get current user confectioneryId
         val confectioneryId = "1" // get current confectioneryId
+        // There will be for cycle because there will be 1 or more confectioneriesId for 1 confectioner
         if (userConfectioneryId == confectioneryId) {
             menu?.findItem(R.id.add)?.setVisible(true)
         }

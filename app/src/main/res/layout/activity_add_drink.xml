@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<!--    <data>-->
-
-<!--        <variable-->
-<!--            name="viewModel"-->
-<!--            type="com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel" />-->
-<!--    </data>-->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -24,7 +17,7 @@
                 android:id="@+id/upper_tv"
                 style="@style/Small_Text_Style"
                 android:gravity="center"
-                android:text="To add new drink, please, fill \n out the form below!"
+                android:text="@string/add_drink_top"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -42,7 +35,7 @@
                 android:id="@+id/drink_type_tv"
                 style="@style/Text_Style"
                 android:gravity="center_vertical"
-                android:text="Drink type: "
+                android:text="@string/drink_type"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/on_info" />
 
@@ -57,24 +50,24 @@
                 <RadioButton
                     android:id="@+id/coffee_rb"
                     style="@style/Input_Field_Style"
-                    android:text="coffee" />
+                    android:text="@string/coffee" />
 
                 <RadioButton
                     android:id="@+id/tea_rb"
                     style="@style/Input_Field_Style"
-                    android:text="tea" />
+                    android:text="@string/tea" />
 
                 <RadioButton
                     android:id="@+id/other_rb"
                     style="@style/Input_Field_Style"
-                    android:text="other" />
+                    android:text="@string/other" />
             </RadioGroup>
 
             <TextView
                 android:id="@+id/drink_name_tv"
                 style="@style/Text_Style"
                 android:gravity="center_vertical"
-                android:text="Drink name: "
+                android:text="@string/drink_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/drink_type_rg" />
 
@@ -89,7 +82,7 @@
                 android:id="@+id/drink_description_tv"
                 style="@style/Text_Style"
                 android:gravity="center_vertical"
-                android:text="Drink description: "
+                android:text="@string/drink_description"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/drink_name_et" />
 
@@ -104,7 +97,7 @@
                 android:id="@+id/drink_capacity_tv"
                 style="@style/Text_Style"
                 android:gravity="center_vertical"
-                android:text="Drink capacity (ml): "
+                android:text="@string/drink_capacity_ml"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/drink_description_et" />
 
@@ -126,7 +119,7 @@
 
                 <TextView
                     style="@style/Text_Style"
-                    android:text="Price: " />
+                    android:text="@string/price" />
 
                 <EditText
                     android:id="@+id/eiro_et"
@@ -137,7 +130,7 @@
 
                 <TextView
                     style="@style/Text_Style"
-                    android:text="." />
+                    android:text="@string/dot" />
 
                 <EditText
                     android:id="@+id/centi_et"
@@ -148,7 +141,7 @@
 
                 <TextView
                     style="@style/Text_Style"
-                    android:text=" €" />
+                    android:text="@string/space_euro_sign" />
 
             </LinearLayout>
 
@@ -164,7 +157,7 @@
             <Button
                 android:id="@+id/add_drink_button"
                 style="@style/Button_Style"
-                android:text="Add new drink"
+                android:text="@string/add_new_drink"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

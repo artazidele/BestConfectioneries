@@ -2,7 +2,6 @@
     <string name="app_name">BestConfectioneries</string>
     <string name="edit_drink">Edit drink</string>
     <string name="tea_name">Tea Name</string>
-    <string name="tea">tea</string>
     <string name="tea_name_tea_name_tea_name_tea_name">Tea Name Tea Name Tea Name Tea Name</string>
     <string name="save_changes">Save changes</string>
     <string name="stars">* * * * * * * * * * * * *</string>
@@ -14,14 +13,18 @@
     <string name="loading">Loading...</string>
     <string name="wrong">Something went \n wrong. \n \n Please, try again later!</string>
     <string name="cancel">Cancel</string>
+    <string name="space_and_euro_sign">€</string>
+    <string name="try_again">Try again</string>
+    <string name="add_drink_top">To add new drink, please, fill \n out the form below!</string>
     <string name="drink_type">Drink type:</string>
     <string name="coffee">coffee</string>
+    <string name="tea">tea</string>
     <string name="other">other</string>
     <string name="drink_name">Drink name:</string>
     <string name="drink_description">Drink description:</string>
     <string name="drink_capacity_ml">Drink capacity (ml):</string>
     <string name="price">Price:</string>
     <string name="dot">.</string>
-    <string name="space_and_euro_sign">€</string>
-    <string name="try_again">Try again</string>
+    <string name="space_euro_sign">€</string>
+    <string name="add_new_drink">Add new drink</string>
 </resources>

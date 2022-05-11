@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.RadioButton
@@ -137,6 +138,13 @@ class AddDrinkActivity : AppCompatActivity() {
         val builder = AlertDialog.Builder(this)
             .setView(dialogView)
         val alertDialog = builder.show()
+        if (coffeeRB.isChecked == true) {
+            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Coffee"
+        } else if (teaRB.isChecked == true) {
+            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Tea"
+        } else {
+            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).visibility = View.INVISIBLE
+        }
         dialogView.findViewById<TextView>(R.id.drink_name_et).text = newDrink.name
         dialogView.findViewById<TextView>(R.id.drink_description_et).text = newDrink.description
         dialogView.findViewById<TextView>(R.id.drink_capacity_et).text = newDrink.capacity.toString()
@@ -155,12 +163,12 @@ class AddDrinkActivity : AppCompatActivity() {
             dialogView.findViewById<Button>(R.id.close_window_button).isEnabled = false
             dialogView.findViewById<Button>(R.id.add_drink_button).isEnabled = false
             dialogView.findViewById<Button>(R.id.add_drink_button).text = "Loading..."
-            viewModel.addNewDrink(newDrink/*nameET, coffeeRB, teaRB, otherRB, capacityET, descriptionET, eiroET, centiET*/) { added ->
+            viewModel.addNewDrink(newDrink) { added ->
                 if (added == true) {
                     alertDialog.dismiss()
                     Navigation().fromTo(this, DrinkListActivity())
                 } else {
-                    val message = "@string/wrong"
+                    val message = "Something went wrong. \n Please, try again later!"
                     ErrorHandling().showErrorWindow(this, message)
                 }
             }

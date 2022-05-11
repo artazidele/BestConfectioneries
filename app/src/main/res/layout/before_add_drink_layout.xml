@@ -16,7 +16,6 @@
         <TextView
             android:id="@+id/tea_or_coffee_tv"
             style="@style/Small_Text_Style"
-            android:text="@string/tea"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

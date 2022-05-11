@@ -61,9 +61,8 @@ class EditDrinkActivity : AppCompatActivity() {
         }
     }
 
-
     private fun getDrink() {
-        viewModel.getOneDrink(drinkId!!) { // viewModel.getOneDrink("5") {
+        viewModel.getOneDrink(drinkId) { // viewModel.getOneDrink("5") {
             if (it?.id != null) {
                 drink = it
                 Log.d(ContentValues.TAG, "FOUND")
@@ -174,6 +173,7 @@ class EditDrinkActivity : AppCompatActivity() {
     private fun editDrink() {
         val confectionerId = "ConfectionerId" // Get current user id or etc
         val confectioneryId = "1" // Get current user's confectionery id or etc
+        // There will be for cycle because there will be 1 or more confectioneriesId for 1 confectioner
         val editedBy = drink.editedBy
         val editedOn = drink.editedOn
         val dateAndTimeNow = LocalDateTime.now()
