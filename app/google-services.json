@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "672954975499",
+    "project_id": "bestconfectioneries",
+    "storage_bucket": "bestconfectioneries.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672954975499:android:e0f9e00d94613ee26c0e0e",
+        "android_client_info": {
+          "package_name": "com.example.bestconfectioneries"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672954975499-fdp16q1780vman87l6121p7pc8dfruhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL_LXCqjbI8HpGQSTT5ZkGL54evo5drB4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672954975499-fdp16q1780vman87l6121p7pc8dfruhd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
