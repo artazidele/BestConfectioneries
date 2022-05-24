@@ -29,7 +29,7 @@ class DrinkViewModel : ViewModel() {
 
     fun getOneDrink(id: String, onResult: (Drink?) -> Unit) {
         viewModelScope.launch {
-            _status.value = DrinkNetworkStatus.LOADING //DONE //LOADING
+            _status.value = DrinkNetworkStatus.LOADING
             DrinkDatabase().getDrink(id)
                 .addOnSuccessListener { document ->
                     val drink = document.toObject<Drink>()

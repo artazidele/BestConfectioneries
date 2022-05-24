@@ -27,4 +27,8 @@
     <string name="dot">.</string>
     <string name="space_euro_sign">€</string>
     <string name="add_new_drink">Add new drink</string>
+    <string name="add_item">Add item</string>
+    <string name="delete_item">Delete item</string>
+    <string name="items">Items</string>
+    <string name="confectioneries">Confectioneries</string>
 </resources>

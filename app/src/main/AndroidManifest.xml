@@ -15,15 +15,41 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BestConfectioneries">
         <activity
+            android:name=".items.view.EditItemActivity"
+            android:exported="true" />
+        <activity
+            android:name=".items.view.ItemListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".items.view.AddItemActivity"
+            android:exported="true" />
+        <activity
+            android:name=".items.view.AllItemActivity"
+            android:exported="true" />
+        <activity
+            android:name=".drinks.view.AllDrinkActivity"
+            android:exported="true" />
+        <activity
+            android:name=".confectioneries.view.OneConfectioneryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".confectioneries.view.EditConfectioneryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".confectioneries.view.AddConfectioneryActivity"
+            android:exported="true" />
+        <activity
+            android:name=".confectioneries.view.AllConfectioneryListActivity"
+            android:exported="true" />
+        <activity
             android:name=".drinks.view.EditDrinkActivity"
             android:exported="true" />
         <activity
             android:name=".drinks.view.AddDrinkActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".drinks.view.DrinkListActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
