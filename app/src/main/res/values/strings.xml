@@ -16,6 +16,7 @@
     <string name="space_and_euro_sign">€</string>
     <string name="try_again">Try again</string>
     <string name="add_drink_top">To add new drink, please, fill \n out the form below!</string>
+    <string name="add_item_top">To add new confectionery item, please, \n fill out the form below!</string>
     <string name="drink_type">Drink type:</string>
     <string name="coffee">coffee</string>
     <string name="tea">tea</string>
@@ -31,4 +32,15 @@
     <string name="delete_item">Delete item</string>
     <string name="items">Items</string>
     <string name="confectioneries">Confectioneries</string>
+    <string name="item_type">Item type:</string>
+    <string name="cake">cake</string>
+    <string name="bun">bun</string>
+    <string name="cookies">cookies</string>
+    <string name="item_name">Item name:</string>
+    <string name="item_description">Item description:</string>
+    <string name="weight_g">Weight (g):</string>
+    <string name="allergens">Allergens:</string>
+    <string name="for_vegetarians">For vegetarians</string>
+    <string name="for_vegans">For vegans</string>
+    <string name="add_item_photo">Add item photo</string>
 </resources>

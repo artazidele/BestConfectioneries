@@ -9,4 +9,8 @@
         android:title="@string/items"/>
     <item android:id="@+id/confectioneries"
         android:title="@string/confectioneries"/>
+    <item android:id="@+id/confectionery_items"
+        android:title="Confectionery's items"/>
+    <item android:id="@+id/confectionery_drinks"
+        android:title="Confectionery's drinks"/>
 </menu>

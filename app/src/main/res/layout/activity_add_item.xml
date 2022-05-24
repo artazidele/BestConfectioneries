@@ -1,9 +1,214 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".items.view.AddItemActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_layout"
+            tools:context=".items.view.AddItemActivity">
+
+            <TextView
+                android:id="@+id/upper_tv"
+                style="@style/Small_Text_Style"
+                android:gravity="center"
+                android:text="@string/add_item_top"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/on_info"
+                style="@style/Small_Text_Style"
+                android:gravity="center"
+                android:text="@string/stars"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/upper_tv" />
+
+            <TextView
+                android:id="@+id/drink_type_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/item_type"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/on_info" />
+
+            <RadioGroup
+                android:id="@+id/drink_type_rg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_type_tv">
+
+                <RadioButton
+                    android:id="@+id/cake_rb"
+                    style="@style/Input_Field_Style"
+                    android:text="@string/cake" />
+
+                <RadioButton
+                    android:id="@+id/bun_rb"
+                    style="@style/Input_Field_Style"
+                    android:text="@string/bun" />
+
+                <RadioButton
+                    android:id="@+id/cookies_rb"
+                    style="@style/Input_Field_Style"
+                    android:text="@string/cookies" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/drink_name_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/item_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_type_rg" />
+
+            <EditText
+                android:id="@+id/drink_name_et"
+                style="@style/Input_Field_Style"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_name_tv" />
+
+            <ImageView
+                android:id="@+id/item_iv"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_name_et"/>
+
+            <Button
+                android:id="@+id/add_image_button"
+                style="@style/Button_Style"
+                android:text="@string/add_item_photo"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_iv" />
+
+            <TextView
+                android:id="@+id/drink_description_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/item_description"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/add_image_button" />
+
+            <EditText
+                android:id="@+id/drink_description_et"
+                style="@style/Input_Field_Style"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_description_tv" />
+
+            <TextView
+                android:id="@+id/drink_allergens_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/allergens"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_description_et" />
+
+            <EditText
+                android:id="@+id/drink_allergens_et"
+                style="@style/Input_Field_Style"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_allergens_tv" />
+
+            <CheckBox
+                style="@style/Input_Field_Style"
+                android:id="@+id/vegetarians"
+                android:text="@string/for_vegetarians"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_allergens_et"/>
+
+            <CheckBox
+                style="@style/Input_Field_Style"
+                android:id="@+id/vegans"
+                android:text="@string/for_vegans"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vegetarians"/>
+
+            <TextView
+                android:id="@+id/drink_capacity_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/weight_g"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vegans" />
+
+            <EditText
+                android:id="@+id/drink_capacity_et"
+                style="@style/Input_Field_Style"
+                android:inputType="number"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_capacity_tv" />
+
+            <LinearLayout
+                android:id="@+id/price_ll"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/drink_capacity_et">
+
+                <TextView
+                    style="@style/Text_Style"
+                    android:text="@string/price" />
+
+                <EditText
+                    android:id="@+id/eiro_et"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/btn_height"
+                    android:inputType="number"
+                    android:minWidth="80dp" />
+
+                <TextView
+                    style="@style/Text_Style"
+                    android:text="@string/dot" />
+
+                <EditText
+                    android:id="@+id/centi_et"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/btn_height"
+                    android:inputType="number"
+                    android:minWidth="80dp" />
+
+                <TextView
+                    style="@style/Text_Style"
+                    android:text="@string/space_euro_sign" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/under_info"
+                style="@style/Small_Text_Style"
+                android:gravity="center"
+                android:text="@string/stars"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/price_ll" />
+
+            <Button
+                android:id="@+id/add_drink_button"
+                style="@style/Button_Style"
+                android:text="@string/add_new_drink"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/under_info" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

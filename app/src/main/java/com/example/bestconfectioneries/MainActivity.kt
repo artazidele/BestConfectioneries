@@ -1,18 +1,16 @@
 package com.example.bestconfectioneries
 
-import android.content.Context
-import android.content.Intent
+
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.core.content.ContextCompat
-import com.example.bestconfectioneries.R.id.confectioneries
 import com.example.bestconfectioneries.confectioneries.view.AllConfectioneryListActivity
 import com.example.bestconfectioneries.drinks.view.AllDrinkActivity
 import com.example.bestconfectioneries.drinks.view.DrinkListActivity
 import com.example.bestconfectioneries.helpers.Navigation
 import com.example.bestconfectioneries.items.view.AllItemActivity
+import com.example.bestconfectioneries.items.view.ItemListActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +27,8 @@ class MainActivity : AppCompatActivity() {
             R.id.drinks -> Navigation().fromTo(this, AllDrinkActivity())
             R.id.items -> Navigation().fromTo(this, AllItemActivity())
             R.id.confectioneries -> Navigation().fromTo(this, AllConfectioneryListActivity())
+            R.id.confectionery_drinks -> Navigation().fromTo(this, DrinkListActivity())
+            R.id.confectionery_items -> Navigation().fromTo(this, ItemListActivity())
         }
         return super.onOptionsItemSelected(item)
     }
