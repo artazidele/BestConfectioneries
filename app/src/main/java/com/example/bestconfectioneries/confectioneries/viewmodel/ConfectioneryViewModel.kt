@@ -1,5 +1,11 @@
 package com.example.bestconfectioneries.confectioneries.viewmodel
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -96,6 +102,39 @@ class ConfectioneryViewModel : ViewModel() {
                     _status.value = ConfectioneryNetworkStatus.ERROR
                     onResult(null)
                 }
+        }
+    }
+
+    fun getLocation(context: Context, latitude: String, longitude: String) {
+        val location =
+            Uri.parse("geo:0,0?q=" + latitude + ", " + longitude)
+        val mapIntent = Intent(Intent.ACTION_VIEW, location)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        try {
+            startActivity(context, mapIntent, null)
+        } catch (e: ActivityNotFoundException) {
+            Log.d("GoogleMaps connecting error: ", e.localizedMessage)
+        }
+    }
+
+    fun getAddress(context: Context, address: String) {
+        var addressString = ""
+        val addressArray = address.toCharArray()
+        for (char in addressArray) {
+            if (char == ' '){
+                addressString += "%20"
+            } else {
+                addressString += char
+            }
+        }
+        val location =
+            Uri.parse("geo:0,0?q=" + addressString)
+        val mapIntent = Intent(Intent.ACTION_VIEW, location)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        try {
+            startActivity(context, mapIntent, null)
+        } catch (e: ActivityNotFoundException) {
+            Log.d("GoogleMaps connecting error: ", e.localizedMessage)
         }
     }
 }
