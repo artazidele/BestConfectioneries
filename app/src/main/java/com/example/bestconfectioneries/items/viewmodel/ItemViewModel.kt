@@ -1,9 +1,11 @@
 package com.example.bestconfectioneries.items.viewmodel
 
+import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.bestconfectioneries.items.model.ImageStorage
 import com.example.bestconfectioneries.items.model.Item
 import com.example.bestconfectioneries.items.model.ItemDatabase
 import com.google.firebase.firestore.ktx.toObject
@@ -14,13 +16,16 @@ enum class ItemNetworkStatus { LOADING, ERROR, DONE }
 class ItemViewModel : ViewModel() {
     private val _status = MutableLiveData<ItemNetworkStatus>()
     val status: LiveData<ItemNetworkStatus> = _status
+
     fun addNewItem(item: Item, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
             ItemDatabase().addItem(item)
                 .addOnSuccessListener { documents ->
+                    _status.value = ItemNetworkStatus.DONE
                     onResult(true)
                 }
                 .addOnFailureListener {
+                    _status.value = ItemNetworkStatus.DONE
                     onResult(false)
                 }
         }
@@ -113,6 +118,19 @@ class ItemViewModel : ViewModel() {
                 .addOnFailureListener {
                     _status.value = ItemNetworkStatus.ERROR
                     onResult(null)
+                }
+        }
+    }
+
+    fun addImage(id: String, imageView: ImageView, onResult: (Boolean) -> Unit) {
+        viewModelScope.launch {
+            _status.value = ItemNetworkStatus.LOADING
+           ImageStorage().saveImage(id, imageView)
+                .addOnSuccessListener {
+                    onResult(true)
+                }
+                .addOnFailureListener {
+                    onResult(false)
                 }
         }
     }

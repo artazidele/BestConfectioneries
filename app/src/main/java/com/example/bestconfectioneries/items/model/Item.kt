@@ -15,5 +15,5 @@ data class Item(
     val editedOn: ArrayList<String> = ArrayList(),
     val forVegetarians: Boolean = false,
     val forVegans: Boolean = false,
-    val allergens: ArrayList<String> = ArrayList()
+    val allergens: String = ""
 )

@@ -22,13 +22,14 @@ import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.ErrorHandling
 import com.example.bestconfectioneries.helpers.Navigation
 import com.example.bestconfectioneries.items.model.Item
+import com.example.bestconfectioneries.items.viewmodel.ItemViewModel
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
 class AddItemActivity : AppCompatActivity() {
-    private val viewModel: DrinkViewModel by viewModels()
+    private val viewModel: ItemViewModel by viewModels()
     private lateinit var binding: ActivityAddItemBinding
     private lateinit var newItem: Item
     private lateinit var addDrinkBtn: Button
@@ -43,8 +44,7 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var vegetariansCB: CheckBox
     private lateinit var eiroET: EditText
     private lateinit var centiET: EditText
-
-
+    private lateinit var addImageBtn: Button
     lateinit var itemImageView: ImageView
     private val pickItemImage = 100
     private var itemImageUri: Uri? = null
@@ -73,7 +73,8 @@ class AddItemActivity : AppCompatActivity() {
         addDrinkBtn.setOnClickListener {
             addDrink()
         }
-        binding.addImageButton.setOnClickListener {
+        addImageBtn = binding.addImageButton
+        addImageBtn.setOnClickListener {
             addImage()
         }
     }
@@ -134,94 +135,77 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     private fun addDrink() {
-//        if (coffeeRB.isChecked == false && teaRB.isChecked == false && otherRB.isChecked == false) {
-//            val message = "Please, choose drink type!"
-//            ErrorHandling().showErrorWindow(this, message)
-//        } else {
-//            val confectionerId = "ConfectionerId" // Get current user id or etc
-//            val confectioneryId = "1" // Get current user's confectionery id or etc
-//            val editedBy: ArrayList<String> = ArrayList()
-//            val editedOn: ArrayList<String> = ArrayList()
-//            val dateAndTimeNow = LocalDateTime.now()
-//            val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
-//            val dateAndTimeToSave = dateAndTimeNow.format(dateFormat).toString()
-//            editedBy.add(confectionerId)
-//            editedOn.add(dateAndTimeToSave)
-//            val uuid = UUID.randomUUID()
-//            val id = uuid.toString()
-//            if (eiroET.text.toString() == "") {
-//                eiroET.setText("0")
-//            }
-//            if (centiET.text.toString() == "") {
-//                centiET.setText("0")
-//            } else if (centiET.text.toString().length < 2) {
-//                centiET.setText(centiET.text.toString() + "0")
-//            }
-//            if (capacityET.text.toString() == "") {
-//                capacityET.setText("0")
-//            }
-//            val totalPrice = eiroET.text.toString().toInt() * 100 + centiET.text.toString().toInt()
-//            val centi = totalPrice % 100
-//            val eiro = (totalPrice - centi) / 100
-//            newDrink = Drink(
-//                id,
-//                confectioneryId,
-//                nameET.text.toString(),
-//                coffeeRB.isChecked,
-//                teaRB.isChecked,
-//                otherRB.isChecked,
-//                eiro,
-//                centi,
-//                capacityET.text.toString().toInt(),
-//                descriptionET.text.toString(),
-//                editedBy, editedOn
-//            )
-//            openSaveWindow()
-//            supportActionBar?.setDisplayHomeAsUpEnabled(false)
-//            addDrinkBtn.isEnabled = false
-//        }
+        if (cakeRB.isChecked == false && bunRB.isChecked == false && cookiesRB.isChecked == false) {
+            val message = "Please, choose item type!"
+            ErrorHandling().showErrorWindow(this, message)
+        } else {
+            val confectionerId = "ConfectionerId" // Get current user id or etc
+            val confectioneryId = "1" // Get current user's confectionery id or etc
+            val editedBy: ArrayList<String> = ArrayList()
+            val editedOn: ArrayList<String> = ArrayList()
+            val dateAndTimeNow = LocalDateTime.now()
+            val dateFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+            val dateAndTimeToSave = dateAndTimeNow.format(dateFormat).toString()
+            editedBy.add(confectionerId)
+            editedOn.add(dateAndTimeToSave)
+            val uuid = UUID.randomUUID()
+            val id = uuid.toString()
+            if (eiroET.text.toString() == "") {
+                eiroET.setText("0")
+            }
+            if (centiET.text.toString() == "") {
+                centiET.setText("0")
+            } else if (centiET.text.toString().length < 2) {
+                centiET.setText(centiET.text.toString() + "0")
+            }
+            if (weightET.text.toString() == "") {
+                weightET.setText("0")
+            }
+            val totalPrice = eiroET.text.toString().toInt() * 100 + centiET.text.toString().toInt()
+            val centi = totalPrice % 100
+            val eiro = (totalPrice - centi) / 100
+            newItem = Item(
+                id,
+                confectioneryId,
+                nameET.text.toString(),
+                cakeRB.isChecked,
+                bunRB.isChecked,
+                cookiesRB.isChecked,
+                eiro,
+                centi,
+                weightET.text.toString().toInt(),
+                descriptionET.text.toString(),
+                editedBy, editedOn,
+                vegetariansCB.isChecked,
+                vegansCB.isChecked,
+                allergensET.text.toString(),
+            )
+            supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            addDrinkBtn.isEnabled = false
+            addDrinkBtn.text = "Loading..."
+            addImageBtn.isEnabled = false
+            viewModel.addImage(newItem.id, itemImageView) { added ->
+                if (added == true) {
+                    viewModel.addNewItem(newItem) { itemAdded ->
+                        if (itemAdded == true) {
+                            Navigation().fromTo(this, ItemListActivity())
+                        } else {
+                            val message = "Something went wrong. \n Please, try again later!"
+                            ErrorHandling().showErrorWindow(this, message)
+                            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                            addDrinkBtn.isEnabled = true
+                            addImageBtn.isEnabled = true
+                        }
+                    }
+                } else {
+                    val message = "Something went wrong. \n Please, try again later!"
+                    ErrorHandling().showErrorWindow(this, message)
+                    supportActionBar?.setDisplayHomeAsUpEnabled(true)
+                    addDrinkBtn.isEnabled = true
+                    addImageBtn.isEnabled = true
+                }
 
-    }
-
-    private fun openSaveWindow() {
-//        val dialogView = LayoutInflater.from(this).inflate(R.layout.before_add_drink_layout, null)
-//        val builder = AlertDialog.Builder(this)
-//            .setView(dialogView)
-//        val alertDialog = builder.show()
-//        if (coffeeRB.isChecked == true) {
-//            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Coffee"
-//        } else if (teaRB.isChecked == true) {
-//            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).text = "Tea"
-//        } else {
-//            dialogView.findViewById<TextView>(R.id.tea_or_coffee_tv).visibility = View.INVISIBLE
-//        }
-//        dialogView.findViewById<TextView>(R.id.drink_name_et).text = newDrink.name
-//        dialogView.findViewById<TextView>(R.id.drink_description_et).text = newDrink.description
-//        dialogView.findViewById<TextView>(R.id.drink_capacity_et).text = newDrink.capacity.toString()
-//        dialogView.findViewById<TextView>(R.id.eiro_et).text = newDrink.eiro.toString()
-//        if (newDrink.centi < 10) {
-//            dialogView.findViewById<TextView>(R.id.centi_et).text = "0" + newDrink.centi.toString()
-//        } else {
-//            dialogView.findViewById<TextView>(R.id.centi_et).text = newDrink.centi.toString()
-//        }
-//        dialogView.findViewById<Button>(R.id.close_window_button).setOnClickListener {
-//            alertDialog.dismiss()
-//            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-//            addDrinkBtn.isEnabled = true
-//        }
-//        dialogView.findViewById<Button>(R.id.add_drink_button).setOnClickListener {
-//            dialogView.findViewById<Button>(R.id.close_window_button).isEnabled = false
-//            dialogView.findViewById<Button>(R.id.add_drink_button).isEnabled = false
-//            dialogView.findViewById<Button>(R.id.add_drink_button).text = "Loading..."
-//            viewModel.addNewDrink(newDrink) { added ->
-//                if (added == true) {
-//                    alertDialog.dismiss()
-//                    Navigation().fromTo(this, DrinkListActivity())
-//                } else {
-//                    val message = "Something went wrong. \n Please, try again later!"
-//                    ErrorHandling().showErrorWindow(this, message)
-//                }
-//            }
-//        }
+            }
+        }
     }
 }
