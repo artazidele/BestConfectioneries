@@ -1,10 +1,12 @@
 package com.example.bestconfectioneries.items.viewmodel
 
+import android.net.Uri
 import android.widget.ImageView
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.bumptech.glide.Glide
 import com.example.bestconfectioneries.items.model.ImageStorage
 import com.example.bestconfectioneries.items.model.Item
 import com.example.bestconfectioneries.items.model.ItemDatabase
@@ -33,7 +35,6 @@ class ItemViewModel : ViewModel() {
 
     fun getOneItem(id: String, onResult: (Item?) -> Unit) {
         viewModelScope.launch {
-            _status.value = ItemNetworkStatus.LOADING
             ItemDatabase().getItem(id)
                 .addOnSuccessListener { document ->
                     val item = document.toObject<Item>()
@@ -125,7 +126,7 @@ class ItemViewModel : ViewModel() {
     fun addImage(id: String, imageView: ImageView, onResult: (Boolean) -> Unit) {
         viewModelScope.launch {
             _status.value = ItemNetworkStatus.LOADING
-           ImageStorage().saveImage(id, imageView)
+            ImageStorage().saveImage(id, imageView)
                 .addOnSuccessListener {
                     onResult(true)
                 }
@@ -133,5 +134,20 @@ class ItemViewModel : ViewModel() {
                     onResult(false)
                 }
         }
+    }
+
+    fun getImage(id: String, onResult: (String?) -> Unit) {
+        viewModelScope.launch {
+            _status.value = ItemNetworkStatus.LOADING
+            ImageStorage().getImageReference(id)
+                .addOnSuccessListener { Uri ->
+                val imageURL = Uri.toString()
+                onResult(imageURL)
+            }.addOnFailureListener {
+                onResult(null)
+            }
+
+        }
+
     }
 }

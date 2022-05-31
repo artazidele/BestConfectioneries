@@ -1,12 +1,15 @@
 package com.example.bestconfectioneries.items.view
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bestconfectioneries.databinding.ItemRowBinding
 import com.example.bestconfectioneries.items.model.Item
 
-class AllItemAdapter(private val dataSet: ArrayList<Item>) :
+class AllItemAdapter(private val dataSet: ArrayList<Item>, private val context: Context) :
     RecyclerView.Adapter<AllItemAdapter.AllItemViewHolder>() {
 
     class AllItemViewHolder(private var binding: ItemRowBinding) :
@@ -26,24 +29,18 @@ class AllItemAdapter(private val dataSet: ArrayList<Item>) :
     override fun onBindViewHolder(viewHolder: AllItemViewHolder, position: Int) {
         val itemToBind = dataSet[position]
         viewHolder.bind(itemToBind)
-        viewHolder.itemView.setOnClickListener {
-            showItem(dataSet[position], viewHolder)
-        }
+//        viewHolder.itemView.setOnClickListener {
+//            showItem(dataSet[position])
+//        }
     }
 
     override fun getItemCount() = dataSet.size
 
-    private fun showItem(item: Item, viewHolder: RecyclerView.ViewHolder) {
-//        val drinkWindow =
-//            MoreAboutDrinkBinding.inflate(LayoutInflater.from(viewHolder.itemView.context))
-//        val builder = AlertDialog.Builder(viewHolder.itemView.context)
-//            .setView(drinkWindow.root)
-//        val alertDialog = builder.show()
-//        drinkWindow.drink = drink
-//        drinkWindow.closeWindowButton.setOnClickListener {
-//            alertDialog.dismiss()
-//        }
-//        drinkWindow.editDrinkButton.visibility = View.GONE
-    }
+//    private fun showItem(item: Item) {
+//        val intent = Intent(context!!, ItemActivity()::class.java)
+//        intent.putExtra("id", item.id)
+//        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//        ContextCompat.startActivity(context!!, intent, null)
+//    }
 
 }

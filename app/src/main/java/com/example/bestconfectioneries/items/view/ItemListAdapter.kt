@@ -29,7 +29,7 @@ class ItemListAdapter(private val dataSet: ArrayList<Item>, private val context:
         val itemToBind = dataSet[position]
         viewHolder.bind(itemToBind)
         viewHolder.itemView.setOnClickListener {
-            showItem(dataSet[position], viewHolder)
+            showItem(dataSet[position])
         }
     }
 
@@ -42,24 +42,10 @@ class ItemListAdapter(private val dataSet: ArrayList<Item>, private val context:
         ContextCompat.startActivity(context!!, intent, null)
     }
 
-    private fun showItem(item: Item, viewHolder: RecyclerView.ViewHolder) {
-//        val itemWindow = MoreAboutItemBinding.inflate(LayoutInflater.from(viewHolder.itemView.context))
-//        val builder = AlertDialog.Builder(viewHolder.itemView.context)
-//            .setView(itemWindow.root)
-//        val alertDialog = builder.show()
-//        drinkWindow.drink = drink
-//        drinkWindow.closeWindowButton.setOnClickListener {
-//            alertDialog.dismiss()
-//        }
-//        val userConfectioneryId = "1" // get current user confectioneriesId
-//        val confectioneryId = "1" // get current confectioneryId
-//        // There will be for cycle because there will be 1 or more confectioneriesId for 1 confectioner
-//        if (userConfectioneryId != confectioneryId) {
-//            drinkWindow.editDrinkButton.visibility = View.GONE
-//        }
-//        drinkWindow.editDrinkButton.setOnClickListener {
-//            alertDialog.dismiss()
-//            editDrink(drink)
-//        }
+    private fun showItem(item: Item) {
+        val intent = Intent(context!!, ItemActivity()::class.java)
+        intent.putExtra("id", item.id)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        ContextCompat.startActivity(context!!, intent, null)
     }
 }

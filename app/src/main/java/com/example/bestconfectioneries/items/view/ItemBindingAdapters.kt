@@ -3,6 +3,7 @@ package com.example.bestconfectioneries.items.view
 import android.content.ContentValues
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -94,38 +95,4 @@ fun bindRowPrice(textView: TextView, item: Item) {
     }
 }
 
-// Binding Adapters for MoreAboutDrink
-//@BindingAdapter("drinkType")
-//fun bindMoreType(textView: TextView, drink: Drink) {
-//    if (drink.coffee == true) {
-//        textView.text = "Coffee"
-//    } else if (drink.tea == true) {
-//        textView.text = "Tea"
-//    } else {
-//        textView.visibility = View.GONE
-//    }
-//}
-//
-//@BindingAdapter("moreName")
-//fun bindMoreName(textView: TextView, name: String) {
-//    textView.text = name
-//}
-//
-//@BindingAdapter("moreDescription")
-//fun bindMoreDescription(textView: TextView, description: String) {
-//    textView.text = description
-//}
-//
-//@BindingAdapter("moreCapacity")
-//fun bindMoreCapacity(textView: TextView, capacity: Int) {
-//    textView.text = "Capacity: " + capacity.toString() + "ml"
-//}
-//
-//@BindingAdapter("morePrice")
-//fun bindMorePrice(textView: TextView, drink: Drink) {
-//    if (drink.centi < 10) {
-//        textView.text = "Price: " + drink.eiro.toString() + ".0" + drink.centi.toString() + "€"
-//    } else {
-//        textView.text = "Price: " + drink.eiro.toString() + "." + drink.centi.toString() + "€"
-//    }
-//}
+

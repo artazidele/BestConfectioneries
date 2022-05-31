@@ -2,6 +2,7 @@ package com.example.bestconfectioneries.items.model
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Build
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
@@ -35,8 +36,8 @@ class ImageStorage {
         return imageToDeleteRef.delete()
     }
 
-    public fun getImageReference(id: String): StorageReference {
+    public fun getImageReference(id: String): Task<Uri> {
         val imageReference = storage.reference.child(id)
-        return imageReference
+        return imageReference.downloadUrl
     }
 }

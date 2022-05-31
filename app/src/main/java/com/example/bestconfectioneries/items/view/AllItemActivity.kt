@@ -37,7 +37,7 @@ class AllItemActivity : AppCompatActivity() {
     private fun refreshItemList() {
         viewModel.getAllItems {
             if (it?.isNotEmpty() == true) {
-                binding.allDrinkRecyclerView.adapter = AllItemAdapter(it!!)
+                binding.allDrinkRecyclerView.adapter = AllItemAdapter(it!!, this)
                 Log.d(ContentValues.TAG, "NOT EMPTY")
             } else {
                 Log.d(ContentValues.TAG, "EMPTY")

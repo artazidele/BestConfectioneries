@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.bestconfectioneries.items.viewmodel.ItemViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_layout"
+            tools:context=".items.view.ItemActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                app:oneItemStatus="@{viewModel.status}"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/item_name"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    android:text="@string/item_name"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/item_photo"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_name" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/Small_Text_Style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/btn_height"
+                android:gravity="center"
+                android:text="@string/loading"
+                app:itemLoadingStatus="@{viewModel.status}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/btn_height"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:itemErrorStatus="@{viewModel.status}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/Small_Text_Style"
+                    android:layout_marginTop="@dimen/btn_height"
+                    android:gravity="center"
+                    android:text="@string/wrong" />
+
+                <Button
+                    android:id="@+id/try_btn"
+                    style="@style/Button_Style"
+                    android:layout_marginTop="@dimen/btn_height"
+                    android:text="@string/try_again" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

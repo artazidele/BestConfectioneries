@@ -53,7 +53,7 @@ class AddItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setTitle("New Drink")
+        setTitle("New Item")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         itemImageView = binding.itemIv
         nameET = binding.drinkNameEt
@@ -130,7 +130,7 @@ class AddItemActivity : AppCompatActivity() {
         }
         dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
             alertDialog.dismiss()
-            Navigation().fromTo(this, DrinkListActivity())
+            Navigation().fromTo(this, ItemListActivity())
         }
     }
 
