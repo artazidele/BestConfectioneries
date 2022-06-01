@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
             R.id.drinks -> Navigation().fromTo(this, AllDrinkActivity())
             R.id.items -> Navigation().fromTo(this, AllItemActivity())
             R.id.confectioneries -> Navigation().fromTo(this, AllConfectioneryListActivity())
-            R.id.confectionery_drinks -> Navigation().fromTo(this, DrinkListActivity())
-            R.id.confectionery_items -> Navigation().fromTo(this, ItemListActivity())
         }
         return super.onOptionsItemSelected(item)
     }

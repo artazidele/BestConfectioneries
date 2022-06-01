@@ -3,7 +3,6 @@
     <string name="edit_drink">Edit drink</string>
     <string name="tea_name">Tea Name</string>
     <string name="tea_name_tea_name_tea_name_tea_name">Tea Name Tea Name Tea Name Tea Name</string>
-    <string name="save_changes">Save changes</string>
     <string name="stars">* * * * * * * * * * * * *</string>
     <string name="euro_sign">€</string>
     <string name="okay">Okay</string>
@@ -16,6 +15,7 @@
     <string name="space_and_euro_sign">€</string>
     <string name="try_again">Try again</string>
     <string name="add_drink_top">To add new drink, please, fill \n out the form below!</string>
+    <string name="add_conf_top">To add new confectionery, please, fill \n out the form below!</string>
     <string name="add_item_top">To add new confectionery item, please, \n fill out the form below!</string>
     <string name="drink_type">Drink type:</string>
     <string name="coffee">coffee</string>
@@ -29,7 +29,6 @@
     <string name="space_euro_sign">€</string>
     <string name="add_new_drink">Add new drink</string>
     <string name="add_item">Add item</string>
-    <string name="delete_item">Delete item</string>
     <string name="items">Items</string>
     <string name="confectioneries">Confectioneries</string>
     <string name="item_type">Item type:</string>
@@ -44,4 +43,21 @@
     <string name="for_vegans">For vegans</string>
     <string name="add_item_photo">Add item photo</string>
     <string name="add_new_item">Add new item</string>
+    <string name="add_confectionery">Add Confectionery</string>
+    <string name="add_new_confectionery">Add new confectionery</string>
+    <string name="phone">Phone:</string>
+    <string name="email">Email:</string>
+    <string name="address">Address:</string>
+    <string name="description">Description:</string>
+    <string name="confectionery">Confectionery:</string>
+    <string name="edit_confectionery">Edit confectionery</string>
+    <string name="confectionery_s_items">Confectionery\'s items</string>
+    <string name="confectionery_s_drinks">Confectionery\'s drinks</string>
+    <string name="find_confectionery">Find confectionery</string>
+    <string name="save_confectionery">Save confectionery</string>
+    <string name="update_confectionery">Update confectionery</string>
+    <string name="choose_other_photo">Choose other photo</string>
+    <string name="save_changes">Save changes</string>
+    <string name="delete_item">Delete item</string>
+    <string name="edit_item">Edit item</string>
 </resources>

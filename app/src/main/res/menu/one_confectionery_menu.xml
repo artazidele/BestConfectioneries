@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/edit"
+        android:title="@string/edit_confectionery"/>
+    <item android:id="@+id/confectionery_items"
+        android:title="@string/confectionery_s_items"/>
+    <item android:id="@+id/confectionery_drinks"
+        android:title="@string/confectionery_s_drinks"/>
+    <item android:id="@+id/find"
+        android:title="@string/find_confectionery"/>
+</menu>

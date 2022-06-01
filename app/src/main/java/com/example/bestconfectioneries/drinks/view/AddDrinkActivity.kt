@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.example.bestconfectioneries.R
+import com.example.bestconfectioneries.confectioneries.view.OneConfectioneryActivity
 import com.example.bestconfectioneries.databinding.ActivityAddDrinkBinding
 import com.example.bestconfectioneries.drinks.model.Drink
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
@@ -35,11 +36,13 @@ class AddDrinkActivity : AppCompatActivity() {
     private lateinit var capacityET: EditText
     private lateinit var eiroET: EditText
     private lateinit var centiET: EditText
+    private lateinit var confectioneryId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddDrinkBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("New Drink")
+        confectioneryId = intent.getStringExtra("id").toString()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         nameET = binding.drinkNameEt
         descriptionET = binding.drinkDescriptionEt
@@ -79,7 +82,7 @@ class AddDrinkActivity : AppCompatActivity() {
         }
         dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
             alertDialog.dismiss()
-            Navigation().fromTo(this, DrinkListActivity())
+            Navigation().fromToStringId(this, DrinkListActivity(), confectioneryId)
         }
     }
 
@@ -166,7 +169,7 @@ class AddDrinkActivity : AppCompatActivity() {
             viewModel.addNewDrink(newDrink) { added ->
                 if (added == true) {
                     alertDialog.dismiss()
-                    Navigation().fromTo(this, DrinkListActivity())
+                    Navigation().fromToStringId(this, DrinkListActivity(), confectioneryId)
                 } else {
                     val message = "Something went wrong. \n Please, try again later!"
                     ErrorHandling().showErrorWindow(this, message)

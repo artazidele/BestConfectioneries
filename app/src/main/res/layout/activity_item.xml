@@ -27,12 +27,18 @@
 
 
                 <TextView
+                    android:id="@+id/item_type"
+                    style="@style/Small_Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
                     android:id="@+id/item_name"
                     style="@style/Text_Style"
                     android:gravity="center_vertical"
-                    android:text="@string/item_name"
                     app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/item_type" />
 
                 <ImageView
                     android:id="@+id/item_photo"
@@ -42,6 +48,60 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/item_name" />
+
+                <TextView
+                    android:id="@+id/item_description"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_photo" />
+
+                <TextView
+                    android:id="@+id/item_allergens"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_description" />
+
+                <TextView
+                    android:id="@+id/item_vegetarians"
+                    style="@style/Small_Text_Style"
+                    android:gravity="center_vertical"
+                    android:text="For vegetarians"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_allergens" />
+
+                <TextView
+                    android:id="@+id/item_vegans"
+                    style="@style/Small_Text_Style"
+                    android:gravity="center_vertical"
+                    android:text="For vegans"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_vegetarians" />
+
+                <TextView
+                    android:id="@+id/item_weight"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_vegans" />
+
+                <TextView
+                    android:id="@+id/item_price"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_weight" />
+
+                <Button
+                    android:id="@+id/edit_item_btn"
+                    style="@style/Button_Style"
+                    android:text="@string/edit_item"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/item_price" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView

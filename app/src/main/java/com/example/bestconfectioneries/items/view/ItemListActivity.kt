@@ -10,6 +10,7 @@ import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
+import com.example.bestconfectioneries.confectioneries.view.OneConfectioneryActivity
 import com.example.bestconfectioneries.databinding.ActivityItemListBinding
 import com.example.bestconfectioneries.helpers.Navigation
 import com.example.bestconfectioneries.items.viewmodel.ItemViewModel
@@ -17,11 +18,13 @@ import com.example.bestconfectioneries.items.viewmodel.ItemViewModel
 class ItemListActivity : AppCompatActivity() {
     private val viewModel: ItemViewModel by viewModels()
     private lateinit var binding: ActivityItemListBinding
+    private lateinit var confectioneryId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityItemListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("Item List")
+        confectioneryId = intent.getStringExtra("id").toString()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -33,9 +36,9 @@ class ItemListActivity : AppCompatActivity() {
     }
 
     private fun refreshItemList() {
-        viewModel.getThisConfectioneryItems("1") {
+        viewModel.getThisConfectioneryItems(confectioneryId) {
             if (it?.isNotEmpty() == true) {
-                binding.allDrinkRecyclerView.adapter = ItemListAdapter(it!!, this)
+                binding.allDrinkRecyclerView.adapter = ItemListAdapter(it!!, this, confectioneryId)
                 Log.d(ContentValues.TAG, "NOT EMPTY")
             } else {
                 Log.d(ContentValues.TAG, "EMPTY")
@@ -57,8 +60,8 @@ class ItemListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.add -> Navigation().fromTo(this, AddItemActivity())
-            else -> Navigation().fromTo(this, MainActivity())
+            R.id.add -> Navigation().fromToStringId(this, AddItemActivity(), confectioneryId)
+            else -> Navigation().fromToStringId(this, OneConfectioneryActivity(), confectioneryId)
         }
         return super.onOptionsItemSelected(item)
     }

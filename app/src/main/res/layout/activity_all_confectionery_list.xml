@@ -1,23 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".confectioneries.view.AllConfectioneryListActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/set_location"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+    <data>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:id="@+id/get_location"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/set_location"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        <variable
+            name="viewModel"
+            type="com.example.bestconfectioneries.confectioneries.viewmodel.ConfectioneryViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".confectioneries.view.AllConfectioneryListActivity">
+
+            <androidx.recyclerview.widget.RecyclerView
+                app:confectioneryStatus="@{viewModel.status}"
+                android:id="@+id/all_drink_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/drink_row" />
+
+            <TextView
+                app:confectioneryLoadingStatus="@{viewModel.status}"
+                android:text="@string/loading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/Small_Text_Style"
+                android:layout_marginTop="@dimen/btn_height"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:gravity="center"/>
+
+            <LinearLayout
+                app:confectioneryErrorStatus="@{viewModel.status}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/btn_height"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent">
+                <TextView
+                    android:gravity="center"
+                    android:text="@string/wrong"
+                    android:layout_marginTop="@dimen/btn_height"
+                    style="@style/Small_Text_Style"/>
+                <Button
+                    android:layout_marginTop="@dimen/btn_height"
+                    style="@style/Button_Style"
+                    android:id="@+id/try_btn"
+                    android:text="@string/try_again"/>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".confectioneries.view.AllConfectioneryListActivity">-->
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:id="@+id/set_location"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"/>-->
+
+<!--    <Button-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:id="@+id/get_location"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/set_location"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"/>-->
+
+<!--</androidx.constraintlayout.widget.ConstraintLayout>-->

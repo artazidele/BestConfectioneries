@@ -26,6 +26,7 @@ class EditDrinkActivity : AppCompatActivity() {
     private val viewModel: DrinkViewModel by viewModels()
     private lateinit var binding: ActivityEditDrinkBinding
     private lateinit var menuDeleteItem: MenuItem
+    private lateinit var confectioneryId: String
     private lateinit var nameET: EditText
     private lateinit var descriptionET: EditText
     private lateinit var coffeeRB: RadioButton
@@ -43,9 +44,10 @@ class EditDrinkActivity : AppCompatActivity() {
         setContentView(binding.root)
         setTitle("Edit Drink")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        drinkId = intent.getStringExtra("id").toString()
+        drinkId = intent.getStringExtra("dId").toString()
         nameET = binding.drinkNameEt
         descriptionET = binding.drinkDescriptionEt
+        confectioneryId = intent.getStringExtra("id").toString()
         coffeeRB = binding.coffeeRb
         teaRB = binding.teaRb
         otherRB = binding.otherRb
@@ -105,7 +107,7 @@ class EditDrinkActivity : AppCompatActivity() {
             }
             dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
                 alertDialog.dismiss()
-                Navigation().fromTo(this, DrinkListActivity())
+                Navigation().fromToStringId(this, DrinkListActivity(), confectioneryId)
             }
         } else {
             Navigation().fromTo(this, DrinkListActivity())
@@ -137,7 +139,7 @@ class EditDrinkActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         viewModel.deleteOneDrink(drinkId) { deleted ->
             if (deleted == true) {
-                Navigation().fromTo(this, DrinkListActivity())
+                Navigation().fromToStringId(this, DrinkListActivity(), confectioneryId)
             } else {
                 menuDeleteItem.isEnabled = true
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -212,7 +214,7 @@ class EditDrinkActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         viewModel.updateOneDrink(newDrink) { added ->
             if (added == true) {
-                Navigation().fromTo(this, DrinkListActivity())
+                Navigation().fromToStringId(this, DrinkListActivity(), confectionerId)
             } else {
                 menuDeleteItem.isEnabled = true
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)

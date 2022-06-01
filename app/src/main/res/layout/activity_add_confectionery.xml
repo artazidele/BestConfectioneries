@@ -1,9 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".confectioneries.view.AddConfectioneryActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_layout"
+            tools:context=".confectioneries.view.AddConfectioneryActivity">
+
+            <TextView
+                android:id="@+id/upper_tv"
+                style="@style/Small_Text_Style"
+                android:gravity="center"
+                android:text="@string/add_conf_top"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/on_info"
+                style="@style/Small_Text_Style"
+                android:gravity="center"
+                android:text="@string/stars"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/upper_tv" />
+
+            <TextView
+                android:id="@+id/conf_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/confectionery"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/on_info" />
+
+            <EditText
+                android:id="@+id/conf_et"
+                style="@style/Input_Field_Style"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_tv" />
+
+            <TextView
+                android:id="@+id/conf_description_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/description"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_et" />
+
+            <EditText
+                android:id="@+id/conf_description_et"
+                style="@style/Input_Field_Style"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_description_tv" />
+
+            <TextView
+                android:id="@+id/conf_address_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/address"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_description_et" />
+
+            <EditText
+                android:id="@+id/conf_address_et"
+                style="@style/Input_Field_Style"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_address_tv" />
+
+            <TextView
+                android:id="@+id/conf_email_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/email"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_address_et" />
+
+            <EditText
+                android:id="@+id/conf_email_et"
+                style="@style/Input_Field_Style"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_email_tv" />
+
+            <TextView
+                android:id="@+id/conf_phone_tv"
+                style="@style/Text_Style"
+                android:gravity="center_vertical"
+                android:text="@string/phone"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_email_et" />
+
+            <EditText
+                android:id="@+id/conf_phone_et"
+                style="@style/Input_Field_Style"
+                android:inputType="number"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_phone_tv" />
+
+            <TextView
+                android:id="@+id/under_info"
+                style="@style/Small_Text_Style"
+                android:gravity="center"
+                android:text="@string/stars"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/conf_phone_et" />
+
+            <Button
+                android:id="@+id/add_conf_button"
+                style="@style/Button_Style"
+                android:text="@string/add_new_confectionery"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/under_info" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

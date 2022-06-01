@@ -1,15 +1,19 @@
 package com.example.bestconfectioneries.drinks.view
 
 import android.content.ContentValues
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.bestconfectioneries.MainActivity
 import com.example.bestconfectioneries.R
+import com.example.bestconfectioneries.confectioneries.view.EditConfectioneryActivity
+import com.example.bestconfectioneries.confectioneries.view.OneConfectioneryActivity
 import com.example.bestconfectioneries.databinding.ActivityDrinkListBinding
 import com.example.bestconfectioneries.drinks.viewmodel.DrinkViewModel
 import com.example.bestconfectioneries.helpers.Navigation
@@ -17,11 +21,13 @@ import com.example.bestconfectioneries.helpers.Navigation
 class DrinkListActivity : AppCompatActivity() {
     private val viewModel: DrinkViewModel by viewModels()
     private lateinit var binding: ActivityDrinkListBinding
+    private lateinit var confectioneryId: String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDrinkListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("Drink List")
+        confectioneryId = intent.getStringExtra("id").toString()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
@@ -33,9 +39,9 @@ class DrinkListActivity : AppCompatActivity() {
     }
 
     private fun refreshDrinkList() {
-        viewModel.getThisConfectioneryDrinks("1") {
+        viewModel.getThisConfectioneryDrinks(confectioneryId) {
             if (it?.isNotEmpty() == true) {
-                binding.allDrinkRecyclerView.adapter = DrinkListAdapter(it!!, this)
+                binding.allDrinkRecyclerView.adapter = DrinkListAdapter(it!!, this, confectioneryId)
                 Log.d(ContentValues.TAG, "NOT EMPTY")
             } else {
                 Log.d(ContentValues.TAG, "EMPTY")
@@ -57,8 +63,8 @@ class DrinkListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.add -> Navigation().fromTo(this, AddDrinkActivity())
-            else -> Navigation().fromTo(this, MainActivity())
+            R.id.add -> Navigation().fromToStringId(this, AddDrinkActivity(), confectioneryId)
+            else -> Navigation().fromToStringId(this, OneConfectioneryActivity(), confectioneryId)
         }
         return super.onOptionsItemSelected(item)
     }

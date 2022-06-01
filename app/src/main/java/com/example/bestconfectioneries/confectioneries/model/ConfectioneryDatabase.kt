@@ -39,8 +39,8 @@ class ConfectioneryDatabase {
                     "address" to confectionery.address,
                     "email" to confectionery.email,
                     "phone" to confectionery.phone,
-                    "longitude" to confectionery.longitude,
-                    "latitude" to confectionery.latitude,
+                    "editedBy" to confectionery.editedBy,
+                    "editedOn" to confectionery.editedOn,
                     "photosId" to confectionery.photosId
                 )
             )

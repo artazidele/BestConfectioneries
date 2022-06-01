@@ -1,9 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".confectioneries.view.OneConfectioneryActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.bestconfectioneries.confectioneries.viewmodel.ConfectioneryViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_layout"
+            tools:context=".confectioneries.view.OneConfectioneryActivity">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                app:oneConfectioneryStatus="@{viewModel.status}"
+                android:layout_height="match_parent">
+
+
+                <TextView
+                    android:id="@+id/conf_name"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/conf_description"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conf_name" />
+
+                <TextView
+                    android:id="@+id/conf_address"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conf_description" />
+
+                <TextView
+                    android:id="@+id/conf_email"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conf_address" />
+
+                <TextView
+                    android:id="@+id/conf_phone"
+                    style="@style/Text_Style"
+                    android:gravity="center_vertical"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/conf_email" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/Small_Text_Style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/btn_height"
+                android:gravity="center"
+                android:text="@string/loading"
+                app:confectioneryLoadingStatus="@{viewModel.status}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/btn_height"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:confectioneryErrorStatus="@{viewModel.status}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/Small_Text_Style"
+                    android:layout_marginTop="@dimen/btn_height"
+                    android:gravity="center"
+                    android:text="@string/wrong" />
+
+                <Button
+                    android:id="@+id/try_btn"
+                    style="@style/Button_Style"
+                    android:layout_marginTop="@dimen/btn_height"
+                    android:text="@string/try_again" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

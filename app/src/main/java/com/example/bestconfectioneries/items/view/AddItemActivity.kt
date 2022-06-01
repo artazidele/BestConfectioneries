@@ -45,16 +45,17 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var eiroET: EditText
     private lateinit var centiET: EditText
     private lateinit var addImageBtn: Button
+    private lateinit var confectioneryId: String
     lateinit var itemImageView: ImageView
     private val pickItemImage = 100
     private var itemImageUri: Uri? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddItemBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setTitle("New Item")
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        confectioneryId = intent.getStringExtra("id").toString()
         itemImageView = binding.itemIv
         nameET = binding.drinkNameEt
         descriptionET = binding.drinkDescriptionEt
@@ -130,7 +131,7 @@ class AddItemActivity : AppCompatActivity() {
         }
         dialogView.findViewById<Button>(R.id.delete_drink_button).setOnClickListener {
             alertDialog.dismiss()
-            Navigation().fromTo(this, ItemListActivity())
+            Navigation().fromToStringId(this, ItemListActivity(), confectioneryId)
         }
     }
 
@@ -188,12 +189,13 @@ class AddItemActivity : AppCompatActivity() {
                 if (added == true) {
                     viewModel.addNewItem(newItem) { itemAdded ->
                         if (itemAdded == true) {
-                            Navigation().fromTo(this, ItemListActivity())
+                            Navigation().fromToStringId(this, ItemListActivity(), confectioneryId)
                         } else {
                             val message = "Something went wrong. \n Please, try again later!"
                             ErrorHandling().showErrorWindow(this, message)
                             supportActionBar?.setDisplayHomeAsUpEnabled(true)
                             addDrinkBtn.isEnabled = true
+                            addDrinkBtn.text = "ADD NEW ITEM"
                             addImageBtn.isEnabled = true
                         }
                     }
@@ -202,6 +204,7 @@ class AddItemActivity : AppCompatActivity() {
                     ErrorHandling().showErrorWindow(this, message)
                     supportActionBar?.setDisplayHomeAsUpEnabled(true)
                     addDrinkBtn.isEnabled = true
+                    addDrinkBtn.text = "ADD NEW ITEM"
                     addImageBtn.isEnabled = true
                 }
 

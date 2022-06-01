@@ -105,17 +105,17 @@ class ConfectioneryViewModel : ViewModel() {
         }
     }
 
-    fun getLocation(context: Context, latitude: String, longitude: String) {
-        val location =
-            Uri.parse("geo:0,0?q=" + latitude + ", " + longitude)
-        val mapIntent = Intent(Intent.ACTION_VIEW, location)
-        mapIntent.setPackage("com.google.android.apps.maps")
-        try {
-            startActivity(context, mapIntent, null)
-        } catch (e: ActivityNotFoundException) {
-            Log.d("GoogleMaps connecting error: ", e.localizedMessage)
-        }
-    }
+//    fun getLocation(context: Context, latitude: String, longitude: String) {
+//        val location =
+//            Uri.parse("geo:0,0?q=" + latitude + ", " + longitude)
+//        val mapIntent = Intent(Intent.ACTION_VIEW, location)
+//        mapIntent.setPackage("com.google.android.apps.maps")
+//        try {
+//            startActivity(context, mapIntent, null)
+//        } catch (e: ActivityNotFoundException) {
+//            Log.d("GoogleMaps connecting error: ", e.localizedMessage)
+//        }
+//    }
 
     fun getAddress(context: Context, address: String) {
         var addressString = ""

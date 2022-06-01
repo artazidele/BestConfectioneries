@@ -12,7 +12,7 @@ import com.example.bestconfectioneries.databinding.DrinkRowBinding
 import com.example.bestconfectioneries.databinding.MoreAboutDrinkBinding
 import com.example.bestconfectioneries.drinks.model.Drink
 
-class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val context: Context) :
+class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val context: Context, private val confectioneryId: String) :
     RecyclerView.Adapter<DrinkListAdapter.DrinkListViewHolder>() {
 
     class DrinkListViewHolder(private var binding: DrinkRowBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -40,7 +40,8 @@ class DrinkListAdapter(private val dataSet: ArrayList<Drink>, private val contex
 
     private fun editDrink(drink: Drink) {
         val intent = Intent(context!!, EditDrinkActivity()::class.java)
-        intent.putExtra("id", drink.id)
+        intent.putExtra("dId", drink.id)
+        intent.putExtra("id", confectioneryId)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         ContextCompat.startActivity(context!!, intent, null)
     }

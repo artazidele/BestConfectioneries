@@ -8,7 +8,7 @@ data class Confectionery(
     val email: String = "",
     val phone: String = "",
     val ownerId: String = "",
-    val longitude: String = "",
-    val latitude: String = "",
+    val editedBy: ArrayList<String> = ArrayList(),
+    val editedOn: ArrayList<String> = ArrayList(),
     val photosId: ArrayList<String> = ArrayList()
 )
