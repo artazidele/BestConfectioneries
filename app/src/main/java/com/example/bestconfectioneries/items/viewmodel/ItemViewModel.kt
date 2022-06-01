@@ -136,6 +136,12 @@ class ItemViewModel : ViewModel() {
         }
     }
 
+    fun deleteImage(id: String) {
+        viewModelScope.launch {
+            ImageStorage().deleteImage(id)
+        }
+    }
+
     fun getImage(id: String, onResult: (String?) -> Unit) {
         viewModelScope.launch {
             _status.value = ItemNetworkStatus.LOADING

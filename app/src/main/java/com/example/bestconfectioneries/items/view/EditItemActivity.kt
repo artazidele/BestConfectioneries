@@ -308,6 +308,7 @@ class EditItemActivity : AppCompatActivity() {
         addImageBtn.isEnabled = false
         viewModel.deleteOneItem(itemId) { itemAdded ->
             if (itemAdded == true) {
+                viewModel.deleteImage(itemId)
                 com.example.bestconfectioneries.helpers.Navigation()
                     .fromToStringId(this, ItemListActivity(), confectioneryId)
             } else {
