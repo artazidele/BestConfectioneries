@@ -141,7 +141,7 @@ class AddItemActivity : AppCompatActivity() {
             ErrorHandling().showErrorWindow(this, message)
         } else {
             val confectionerId = "ConfectionerId" // Get current user id or etc
-            val confectioneryId = "1" // Get current user's confectionery id or etc
+            val confectioneryId = confectioneryId
             val editedBy: ArrayList<String> = ArrayList()
             val editedOn: ArrayList<String> = ArrayList()
             val dateAndTimeNow = LocalDateTime.now()

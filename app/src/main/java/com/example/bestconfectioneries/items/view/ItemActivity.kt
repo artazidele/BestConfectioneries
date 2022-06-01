@@ -94,7 +94,7 @@ class ItemActivity : AppCompatActivity() {
             typeTV.setText("Cookies")
         }
         descriptionTV.setText(item.description)
-        allergensTV.setText(item.description)
+        allergensTV.setText(item.allergens)
         if (item.forVegans == false) {
             vegansTV.visibility = View.GONE
         }

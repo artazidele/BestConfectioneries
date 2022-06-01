@@ -174,7 +174,6 @@ class EditDrinkActivity : AppCompatActivity() {
 
     private fun editDrink() {
         val confectionerId = "ConfectionerId" // Get current user id or etc
-        val confectioneryId = "1" // Get current user's confectionery id or etc
         // There will be for cycle because there will be 1 or more confectioneriesId for 1 confectioner
         val editedBy = drink.editedBy
         val editedOn = drink.editedOn
@@ -214,7 +213,7 @@ class EditDrinkActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
         viewModel.updateOneDrink(newDrink) { added ->
             if (added == true) {
-                Navigation().fromToStringId(this, DrinkListActivity(), confectionerId)
+                Navigation().fromToStringId(this, DrinkListActivity(), confectioneryId)
             } else {
                 menuDeleteItem.isEnabled = true
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
